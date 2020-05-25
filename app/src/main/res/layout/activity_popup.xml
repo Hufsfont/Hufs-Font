@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    >
+
+
+    <!-- 타이틀바 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="#FFEB3B"
+            android:gravity="center"
+            android:text="Notice"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </LinearLayout>
+    <!-- //end 타이틀바 -->
+
+    <!-- Notice -->
+    <LinearLayout
+        android:padding="24dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:text="1. 빈 종이에 10개의 글자 상자를 만들어 줍니다."
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txtText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:text="2. 글자 상자에 펜그램 예시문장을 작성합니다."
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txtText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:text="3. 카메라 버튼을 클릭하여 이미지를 찍거나 선택합니다."
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txtText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:text="4. 제공되는 툴을 이용해 이미지를 자릅니다."
+            android:textColor="#000"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <!-- Notice -->
+
+    <View
+        android:background="#66bdbdbd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <!-- 닫기 버튼 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="확인"
+            android:textSize="15sp"
+            android:textColor="#ff7a00"
+            android:padding="16dp"
+            android:gravity="center"
+            android:background="#00000000"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:onClick="mOnClose"/>
+    </LinearLayout>
+    <!--// 닫기 버튼 -->
+</LinearLayout>
