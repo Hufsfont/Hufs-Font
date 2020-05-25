@@ -13,6 +13,7 @@
 using namespace cv;
 using namespace std;
 
+/*주석 추가*/
 
 /*이미지 computer 출력 함수*/
 void printWindow(string nameTag, Mat inputImg) {

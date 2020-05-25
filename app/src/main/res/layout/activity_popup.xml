@@ -7,7 +7,7 @@
     android:layout_width="400dp"
     android:layout_height="wrap_content"
     >
-
+    <!-- 추가된 레이아웃 -->
 
     <!-- 타이틀바 -->
     <LinearLayout

@@ -23,7 +23,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SomeView extends View implements View.OnTouchListener {
+public class SomeView extends View implements View.OnTouchListener { // 추가된 액티비티
     private Paint paint;
     public static List<Point> points;
     int DIST = 2;
@@ -53,7 +53,7 @@ public class SomeView extends View implements View.OnTouchListener {
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
-        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.sample1);
+        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.sample1); // 샘플 파일 없어서 오류. 수정 요함
         float scale = (float) ((width/(float)original.getWidth()));
 
         int image_w = (int) (original.getWidth()*scale);

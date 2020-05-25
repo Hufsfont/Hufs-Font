@@ -7,7 +7,7 @@ import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class popup extends AppCompatActivity {
+public class popup extends AppCompatActivity { // 추가된 액티비티
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

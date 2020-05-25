@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CropActivity">
-
+    <!-- 추가된 레이아웃 -->
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+    <!-- 이미지뷰가 오류나길래 우선 추가해 봄 -->
+    
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"

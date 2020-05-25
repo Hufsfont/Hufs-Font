@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SyllableCropActivity extends AppCompatActivity {
+public class SyllableCropActivity extends AppCompatActivity { // 추가된 액티비티
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
