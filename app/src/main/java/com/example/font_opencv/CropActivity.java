@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.File;
 import java.io.FileOutputStream;
 
-public class CropActivity extends AppCompatActivity { // 추가된 액티비티
+public class CropActivity extends AppCompatActivity {
 
     ImageView compositeImageView;
     boolean crop;

@@ -21,10 +21,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import com.example.fontmaker.enums.ImagePickerEnum;
-import com.example.fontmaker.listeners.IImagePickerLister;
-import com.example.fontmaker.utils.FileUtils;
-import com.example.fontmaker.utils.UiHelper;
+import com.example.font_opencv.enums.ImagePickerEnum;
+import com.example.font_opencv.listeners.IImagePickerLister;
+import com.example.font_opencv.utils.FileUtils;
+import com.example.font_opencv.utils.UiHelper;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;

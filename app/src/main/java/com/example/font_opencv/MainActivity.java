@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
 
-    @Override
     public class MainActivity extends AppCompatActivity {
 
         @Override

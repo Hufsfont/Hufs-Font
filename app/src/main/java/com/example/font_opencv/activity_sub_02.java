@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class activity_sub_02 extends AppCompatActivity {
-    ImageView imageView1, imageView2, imageView3;
+    ImageView imageView1, imageView2, imageView3; // opencv에서 넘어온 이미지 들어가야 함
     private String currentPhotoPath = "";
 
     @Override
