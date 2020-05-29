@@ -14,6 +14,7 @@
         android:required="true" />
 
     <application
+        android:name=".Mydata"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="FontMaker"
@@ -22,9 +23,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".CropActivity"></activity>
+        <activity android:name=".activity_sub_02_02"></activity>
+        <activity android:name=".activity_sub_02_01" />
+        <activity android:name=".CropActivity" />
         <activity android:name=".SomeView" />
-        <activity android:name=".SyllableCropActivity" />
         <activity
             android:name=".popup"
             android:theme="@style/Theme.AppCompat.Dialog" />

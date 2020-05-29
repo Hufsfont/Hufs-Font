@@ -23,7 +23,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SomeView extends View implements View.OnTouchListener { // 추가된 액티비티
+public class SomeView extends View implements View.OnTouchListener {
     private Paint paint;
     public static List<Point> points;
     int DIST = 2;
@@ -53,7 +53,49 @@ public class SomeView extends View implements View.OnTouchListener { // 추가�
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
-        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.sample1); // 샘플 파일 없어서 오류. 수정 요함
+        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.sample1);
+
+        if (Mydata.data_count == 0) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample1);
+        }
+
+        if (Mydata.data_count == 1) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample2);
+        }
+
+        if (Mydata.data_count == 2) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample3);
+        }
+
+        if (Mydata.data_count == 3) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample4);
+        }
+
+        if (Mydata.data_count == 4) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample5);
+        }
+
+        if (Mydata.data_count == 5) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample6);
+        }
+
+        if (Mydata.data_count == 6) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample7);
+        }
+
+        if (Mydata.data_count == 7) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample8);
+        }
+
+        if (Mydata.data_count == 8) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample9);
+        }
+
+        if (Mydata.data_count == 9) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample10);
+        }
+
+
         float scale = (float) ((width/(float)original.getWidth()));
 
         int image_w = (int) (original.getWidth()*scale);

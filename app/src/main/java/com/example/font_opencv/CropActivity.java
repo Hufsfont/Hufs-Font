@@ -8,14 +8,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,9 +24,7 @@ public class CropActivity extends AppCompatActivity {
 
     ImageView compositeImageView;
     boolean crop;
-    int count = 0;
     private String currentPhotoPath = "";
-    File sendimage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,15 +76,50 @@ public class CropActivity extends AppCompatActivity {
 
         SaveImage(resultingImage);
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener(){
+        Button button1 = findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(CropActivity.this, activity_sub_02.class);
-                Uri uri = Uri.parse(currentPhotoPath);
-                intent.putExtra("image", currentPhotoPath);
-                Toast.makeText(getApplicationContext(),currentPhotoPath, Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                if (Mydata.data_count == 0) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 1) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_01.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 2) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_02.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+            }
+        });
+
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                if (Mydata.data_count == 0) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 1) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_01.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 2) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_02.class);
+                    startActivity(intent);
+                }
             }
         });
     }

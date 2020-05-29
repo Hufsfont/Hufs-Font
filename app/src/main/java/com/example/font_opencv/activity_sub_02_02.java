@@ -11,7 +11,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class activity_sub_02 extends AppCompatActivity {
+public class activity_sub_02_02 extends AppCompatActivity {
+
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
 
@@ -20,11 +21,12 @@ public class activity_sub_02 extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub_02);
+        setContentView(R.layout.activity_sub_02_02);
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Mydata.data_count--;
                 finish();
             }
         });
@@ -33,8 +35,7 @@ public class activity_sub_02 extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Mydata.data_count++;
-                Intent intent = new Intent(getApplicationContext(), activity_sub_02_01.class);
+                Intent intent = new Intent(getApplicationContext(), activity_sub_03.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -42,24 +43,24 @@ public class activity_sub_02 extends AppCompatActivity {
         ImageButton imageButton_1 = findViewById(R.id.imageButton_1); // 도움말 표시하기
         imageButton_1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                setContentView(new SomeView(activity_sub_02.this));
+                setContentView(new SomeView(activity_sub_02_02.this));
             }
         });
 
-        if(Mydata.myletter_element[0][0] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[0][0]);
+        if(Mydata.myletter_element[2][0] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[2][0]);
             imageView1 = (ImageView) findViewById(R.id.imageView1);
             imageView1.setImageURI(imageUri);
         }
 
-        if(Mydata.myletter_element[0][1] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[0][1]);
+        if(Mydata.myletter_element[2][1] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[2][1]);
             imageView2 = (ImageView) findViewById(R.id.imageView2);
             imageView2.setImageURI(imageUri);
         }
 
-        if(Mydata.myletter_element[0][2] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[0][2]);
+        if(Mydata.myletter_element[2][2] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[2][2]);
             imageView3 = (ImageView) findViewById(R.id.imageView3);
             imageView3.setImageURI(imageUri);
         }
@@ -67,7 +68,4 @@ public class activity_sub_02 extends AppCompatActivity {
 
 
     }
-
-
-
 }

@@ -26,6 +26,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import static android.os.Environment.getExternalStorageDirectory;
+
 /**
  * Ahsen Saeed}
  * ahsansaeed067@gmail.com}
@@ -64,7 +66,7 @@ public class LocalStorageHelper extends DocumentsProvider {
         final MatrixCursor result = new MatrixCursor(projection != null ? projection
                 : DEFAULT_ROOT_PROJECTION);
         // Add Home directory
-        File homeDir = Environment.getExternalStorageDirectory();
+        File homeDir = getExternalStorageDirectory();
         final MatrixCursor.RowBuilder row = result.newRow();
         // These columns are required
         row.add(DocumentsContract.Root.COLUMN_ROOT_ID, homeDir.getAbsolutePath());

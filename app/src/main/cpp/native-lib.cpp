@@ -1,109 +1,128 @@
+#include <jni.h>
+#include <string>
 #include "opencv2/imgproc/imgproc.hpp"
-
 #include "opencv2/imgcodecs.hpp"
-
 #include "opencv2/highgui/highgui.hpp"
-
 #include <iostream>
-
 #include <opencv2/core/core.hpp>
-
 #include<string>
 
 using namespace cv;
 using namespace std;
 
-/*주석 추가*/
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_example_font_1opencv_MainActivity_stringFromJNI(
+        JNIEnv* env,
+        jobject /* this */) {
 
-/*이미지 computer 출력 함수*/
-void printWindow(string nameTag, Mat inputImg) {
-    //윈도우 창 만들기
-    namedWindow(nameTag, WINDOW_AUTOSIZE);
-    //사진 사이즈 통일
-    resize(inputImg, inputImg, Size(500, 200));
-    //이미지 출력
-    imshow(nameTag, inputImg);
+    void printWindow(string nameTag, Mat inputImg) {
 
-}
-/*사각형으로 잘린 이미지 computer 프로젝트 내부 폴더에 저장*/
-//RGB이미지와 사각형 이름구별변수를 매개변수로 받음
-void ROI_save(Mat &Input, Rect rect, int cnt) {
-    //이미지 사각형으로 필요한 부분 자르기
-    Mat roi = Input(rect);
-    //저장 이름 생성
-    string char_num = to_string(cnt);
-    string name = "num" + char_num + ".jpg";
-    //저장
-    imwrite(name, roi);
-}
-/*이미지 글자에 맞춰 사각형 그리기*/
-//이진화 이미지(input)와 RGB이미지(output)를 매개변수로 받음
-Mat drawingRectangle(Mat &inputImg, Mat &output) {
-    Mat Rectangle = output.clone(); //RGB이미지 복사
-    int cnt = 0; //이미지 저장 이름 구별을 위한 변수
+        namedWindow(nameTag, WINDOW_AUTOSIZE);
+        resize(inputImg, inputImg, Size(500, 200));
+        imshow(nameTag, inputImg);
 
-    //이진화 이미지에서 외곽선 찾기
-    std::vector<vector<Point>> contours;
-    std::vector<Vec4i> hierarchy;
+    }
 
-    findContours(inputImg, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    void ROI_save(Mat &Input, Rect rect, int cnt) {
+        Mat roi = Input(rect);
+        string char_num = to_string(cnt);
+        string name = "num" + char_num + ".jpg";
+        imwrite(name, roi);
+    }
 
-    //외곽선에 맞춰 사각형 그리기
-    if (contours.size() > 0) {
-        for (int idx = 0; idx < contours.size(); idx++) {
-            Rect rect = boundingRect(contours[idx]);
-            //너무 작거나 너무 큰 사각형은 제외
-            if (rect.width < 50 && rect.height >100 && rect.height * rect.width > 2000) {
-                rectangle(Rectangle, Point(rect.x, rect.y), Point(rect.x + rect.width, rect.y + rect.height), Scalar(0, 255, 0), 5);
-                ROI_save(output, rect, cnt); //저장 함수 부르기
-                cnt++;
+    Mat drawingContours(Mat &inputImg) {
+        Mat drawing = Mat::zeros(inputImg.size(), CV_8UC3);
+
+        std::vector<vector<Point>> contours;
+        std::vector<Vec4i> hierarchy;
+
+        findContours(inputImg, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+        /// Draw contours
+        for (int i = 0; i < contours.size(); i++) {
+            Scalar color = Scalar(0, 255, 0);
+            drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
+        }
+        return drawing;
+    }
+
+    Mat drawingRectangle(Mat &inputImg, Mat &output) {
+        Mat Rectangle = output.clone();
+        int cnt = 0;
+
+        std::vector<vector<Point>> contours;
+        std::vector<Vec4i> hierarchy;
+
+        findContours(inputImg, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+        if (contours.size() > 0) {
+            for (int idx = 0; idx < contours.size(); idx++) {
+                Rect rect = boundingRect(contours[idx]);
+
+                if (rect.height * rect.width > 3000) { //입력값에 따라 조건이 달라져야 할듯(정교하게 다듬는 건 나중에)
+                    rectangle(Rectangle, Point(rect.x, rect.y),
+                              Point(rect.x + rect.width, rect.y + rect.height), Scalar(0, 255, 0),
+                              5);
+                    ROI_save(output, rect, cnt);
+                    cnt++;
+                }
             }
         }
+        return Rectangle;
+
     }
-    return Rectangle; //사각형이 그려진 이미지 반환
 
-}
-
-int main()
-
-{
-    //이미지 파일을 불러와 그레이 이미지로 변환한다.
-    Mat input_origin_image = imread("pengram02.jpg", IMREAD_COLOR);
-    Mat input_gray_image;
-    Mat result_binary_image;
-    Mat kernel(3, 3, CV_8U, cv::Scalar(1));
-
-    //이미지 사이즈 조절
-    resize(input_origin_image, input_origin_image, Size(500, 200), 0, 0);
-
-    //원본 이미지를 그레이스케일 이미지로 변환
-    cvtColor(input_origin_image, input_gray_image, COLOR_RGBA2GRAY);
+    int main() {
+        //이미지 파일을 불러와 그레이 이미지로 변환한다.
+        Mat input_origin_image = imread("input4.jpg", IMREAD_COLOR);
+        Mat input_gray_image;
+        Mat result_binary_image;
+        Mat kernel(5, 5, CV_8U, cv::Scalar(1));
 
 
-
-    /*이진화*/
-    Mat mask = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3), cv::Point(1, 1)); //delite연산 kernal 크기
-    //이미지를 부드럽게 만듦 (입력이미지,출력이미지,...)
-    GaussianBlur(input_gray_image, input_gray_image, cv::Point(5, 5), 0);
-    //이미지를 이진화 (입력이미지,출력이미지,...)
-    adaptiveThreshold(input_gray_image, result_binary_image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 17, 3);
-    //이미지 잡음 제거 (입력이미지,출력이미지...)
-    morphologyEx(result_binary_image, result_binary_image, cv::MORPH_CLOSE, kernel); //close
-    //색 반전: deliate연산을 위해
-    bitwise_not(result_binary_image, result_binary_image);
-    //팽창 연산, 이미지의 하얀부분을 팽창시킨다 (입력이미지, 출력이미지,...,반복횟수)
-    dilate(result_binary_image, result_binary_image, mask, cv::Point(-1, -1), 3);
-
-    //사각형 그려진 이미지 받기
-    Mat Rectangle = drawingRectangle(result_binary_image, input_origin_image);
+        cvtColor(input_origin_image, input_gray_image, COLOR_RGBA2GRAY);
 
 
-    //출력
-    printWindow("입력 이미지", input_origin_image);
-    printWindow("이진화 이미지", result_binary_image);
-    printWindow("rectangle", Rectangle);
+        /*
+        threshold값을 127로 해서 이진화 한다.
+        입력 이미지의 특정 필셀값이 threshold값보다 크면 결과
+        이미지상의 같은 위치의 픽셀값을 255로 한다.
+        thshold값보다 작을 경우에는 0이 된다.
 
-    //아무키나 누를 때 까지 대기한다.
-    while (cv::waitKey(0) < 0);
+        threshold(input_gray_image, result_binary_image, 127, 255, THRESH_BINARY);
+        */
 
+        //이진화
+        Mat mask = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(7, 7), cv::Point(1, 1));
+        GaussianBlur(input_gray_image, input_gray_image, cv::Point(5, 5), 0);
+        adaptiveThreshold(input_gray_image, result_binary_image, 255, ADAPTIVE_THRESH_MEAN_C,
+                          THRESH_BINARY, 17, 3);
+        morphologyEx(result_binary_image, result_binary_image, cv::MORPH_CLOSE, kernel); //close
+        bitwise_not(result_binary_image, result_binary_image); //색 반전
+
+        //문자 갯수만큼 바운딩 박스가 나오는지 확인하고 침식 정도를 결정(if, for)_팬그램 확정 후 수정
+        dilate(result_binary_image, result_binary_image, mask, cv::Point(-1, -1), 3);
+        dilate(result_binary_image, result_binary_image, mask, cv::Point(-1, -1), 3);
+
+
+
+        //counters 찾기
+        Mat Counters = drawingContours(result_binary_image);
+
+        //ractangle
+        Mat Rectangle = drawingRectangle(result_binary_image, input_origin_image);
+
+
+        //출력
+        /*
+        printWindow("입력 이미지", input_origin_image);
+        printWindow("이진화 이미지", result_binary_image);
+        printWindow("counters", Counters);
+        printWindow("rectangle", Rectangle);
+        */
+
+
+        //아무키나 누를 때 까지 대기한다.
+        while (cv::waitKey(0) < 0);
+
+    }
 }
