@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,9 @@ public class activity_sub_03 extends AppCompatActivity {
     private Mat img_input;
     private Mat img_output;
 
-    public native void opencv(long inputImage, long outputImage);
+    ImageView imageView1;
+
+    public native void opencv(long matAddrInput, long matAddrResult);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,32 @@ public class activity_sub_03 extends AppCompatActivity {
             }
         });
 
+        //opencv_and_showResult();
+
+        img_input = new Mat();
+        Bitmap bitmap = Mydata.sentence_bitmap;
+        Bitmap bmp32 = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Utils.bitmapToMat(bmp32, img_input);
+
+        if (img_output == null)
+            img_output = new Mat();
+
+        opencv(img_input.getNativeObjAddr(), img_output.getNativeObjAddr());
+
+        Mydata.example = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example);
+
+        imageView1 = (ImageView) findViewById(R.id.imageView1);
+
+        if(Mydata.example != null) {
+            imageView1.setImageBitmap(Mydata.example);
+            //uiHelper.toast(this, "error.");
+        }
+    }
+
+//    public native void opencv(long inputImage, long outputImage);
+/*
+    private void opencv_and_showResult() {
         img_input = new Mat();
         //Bitmap bmp32 = bitmap.copy(Bitmap.Config.ARGB_8888, true);
         Utils.bitmapToMat(Mydata.sentence_bitmap, img_input);
@@ -58,8 +87,9 @@ public class activity_sub_03 extends AppCompatActivity {
 
         Mydata.example= Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(img_output, Mydata.example);
-
     }
+ */
+
 
 
 }

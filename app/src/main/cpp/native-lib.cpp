@@ -53,9 +53,10 @@ Mat drawingRectangle(Mat &inputImg, Mat &output) {
 }
 */
 extern "C"
-JNIEXPORT jobject JNICALL
-Java_com_example_font_1opencv_activity_1sub_103_opencv(JNIEnv *env, jobject thiz, jlong input_image,
-                                                       jlong output_image) {
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_opencv(JNIEnv *env, jobject thiz,
+                                                       jlong mat_addr_input,
+                                                       jlong mat_addr_result) {
 
     /*이미지 computer 출력 함수*/
     //    void printWindow(string nameTag, Mat inputImg) {
@@ -70,8 +71,8 @@ Java_com_example_font_1opencv_activity_1sub_103_opencv(JNIEnv *env, jobject thiz
 
     //Mat main(Mat inputImage, Mat outputImage) {
     //이미지 파일을 불러와 그레이 이미지로 변환한다.
-    Mat &input_origin_image = *(Mat *) input_image;
-    Mat &result_binary_image = *(Mat *) output_image;
+    Mat &input_origin_image = *(Mat *) mat_addr_input;
+    Mat &result_binary_image = *(Mat *) mat_addr_result;
     Mat input_gray_image;
     //Mat result_binary_image;
     Mat kernel(3, 3, CV_8U, cv::Scalar(1));
@@ -81,7 +82,6 @@ Java_com_example_font_1opencv_activity_1sub_103_opencv(JNIEnv *env, jobject thiz
 
     //원본 이미지를 그레이스케일 이미지로 변환
     cvtColor(input_origin_image, input_gray_image, COLOR_RGBA2GRAY);
-
 
 
     /*이진화*/
@@ -116,4 +116,5 @@ Java_com_example_font_1opencv_activity_1sub_103_opencv(JNIEnv *env, jobject thiz
     //}
 
     // cv::imwrite("/Users/ujinkim/AndroidStudioProjects/Font_OpenCV/test.bmp", Rectangle);
+
 }

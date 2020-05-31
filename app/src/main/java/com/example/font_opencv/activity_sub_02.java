@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.font_opencv.utils.UiHelper;
+
 import java.io.File;
 
 public class activity_sub_02 extends AppCompatActivity {
@@ -28,10 +30,11 @@ public class activity_sub_02 extends AppCompatActivity {
 
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
+    private UiHelper uiHelper = new UiHelper();
     //private Mat img_input;
     //private Mat img_output;
 
-    private static final String TAG = "opencv";
+    //private static final String TAG = "opencv";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +74,13 @@ public class activity_sub_02 extends AppCompatActivity {
             imageView1.setImageURI(imageUri);
 
         }
-
-        if(Mydata.example != null)
+        /*
+        if(Mydata.example != null) {
             imageButton_1.setImageBitmap(Mydata.example);
+            //uiHelper.toast(this, "error.");
+        }
+         */
+
 
         if(Mydata.myletter_element[0][1] != null) {
             Uri imageUri = Uri.parse(Mydata.myletter_element[0][1]);
