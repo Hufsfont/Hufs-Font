@@ -182,7 +182,7 @@ Currently, the following file formats are supported:
 @param filename Name of file to be loaded.
 @param flags Flag that can take values of cv::ImreadModes
 */
-CV_EXPORTS_W Mat imread( const String& filename, int flags = IMREAD_COLOR );
+CV_EXPORTS_W Mat & imread(const String& filename, int flags = IMREAD_COLOR );
 
 /** @brief Loads a multi-page image from a file.
 

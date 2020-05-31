@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 
 public class CropActivity extends AppCompatActivity {
 
+
     ImageView compositeImageView;
     boolean crop;
     private String currentPhotoPath = "";
@@ -144,6 +145,7 @@ public class CropActivity extends AppCompatActivity {
         }
 
         currentPhotoPath = "file:" + file.getAbsolutePath();
+
     }
 
 

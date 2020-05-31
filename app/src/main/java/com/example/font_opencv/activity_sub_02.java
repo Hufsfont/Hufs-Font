@@ -3,6 +3,7 @@ package com.example.font_opencv;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -11,9 +12,26 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+
 public class activity_sub_02 extends AppCompatActivity {
+
+    /*
+    static {
+        System.loadLibrary("opencv_java4");
+        System.loadLibrary("native-lib");
+    }
+
+    public native void opencv(long inputImage, long outputImage);
+
+     */
+
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
+    //private Mat img_input;
+    //private Mat img_output;
+
+    private static final String TAG = "opencv";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +65,15 @@ public class activity_sub_02 extends AppCompatActivity {
         });
 
         if(Mydata.myletter_element[0][0] != null) {
+            File tempFile = new File(Environment.getExternalStorageDirectory() + "/temp.jpg");
             Uri imageUri = Uri.parse(Mydata.myletter_element[0][0]);
             imageView1 = (ImageView) findViewById(R.id.imageView1);
             imageView1.setImageURI(imageUri);
+
         }
+
+        if(Mydata.example != null)
+            imageButton_1.setImageBitmap(Mydata.example);
 
         if(Mydata.myletter_element[0][1] != null) {
             Uri imageUri = Uri.parse(Mydata.myletter_element[0][1]);
@@ -67,7 +90,57 @@ public class activity_sub_02 extends AppCompatActivity {
 
 
     }
+    /*
+    private String getRealPathFromURI(Uri contentUri) {
 
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        cursor.moveToFirst();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 
+        return cursor.getString(column_index);
+    }
+
+    // 출처 - http://snowdeer.github.io/android/2016/02/02/android-image-rotation/
+    public int getOrientationOfImage(String filepath) {
+        ExifInterface exif = null;
+
+        try {
+            exif = new ExifInterface(filepath);
+        } catch (IOException e) {
+            Log.d("@@@", e.toString());
+            return -1;
+        }
+
+        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
+
+        if (orientation != -1) {
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    return 90;
+
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    return 180;
+
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    return 270;
+            }
+        }
+
+        return 0;
+    }
+
+    public Bitmap getRotatedBitmap(Bitmap bitmap, int degrees) throws Exception {
+        if(bitmap == null) return null;
+        if (degrees == 0) return bitmap;
+
+        Matrix m = new Matrix();
+        m.setRotate(degrees, (float) bitmap.getWidth() / 2, (float) bitmap.getHeight() / 2);
+
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, true);
+    }
+
+*/
 
 }
+

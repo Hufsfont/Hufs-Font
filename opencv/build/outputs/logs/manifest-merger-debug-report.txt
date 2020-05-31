@@ -8,7 +8,7 @@ INJECTED from /Users/ujinkim/AndroidStudioProjects/Font_OpenCV/opencv/java/Andro
 INJECTED from /Users/ujinkim/AndroidStudioProjects/Font_OpenCV/opencv/java/AndroidManifest.xml:2:1-4:12
 INJECTED from /Users/ujinkim/AndroidStudioProjects/Font_OpenCV/opencv/java/AndroidManifest.xml:2:1-4:12
 	package
-		ADDED from /Users/ujinkim/AndroidStudioProjects/Font_OpenCV/opencv/java/AndroidManifest.xml:3:7-27
+		ADDED from /Users/ujinkim/AndroidStudioProjects/Font_OpenCV/opencv/java/AndroidManifest.xml:3:1-21
 		INJECTED from /Users/ujinkim/AndroidStudioProjects/Font_OpenCV/opencv/java/AndroidManifest.xml
 		INJECTED from /Users/ujinkim/AndroidStudioProjects/Font_OpenCV/opencv/java/AndroidManifest.xml
 	android:versionName
