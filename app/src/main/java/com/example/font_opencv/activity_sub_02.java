@@ -121,45 +121,53 @@ public class activity_sub_02 extends AppCompatActivity {
             img_output10 = new Mat();
 
 
-
+        uiHelper.toast(this, "error.");
         opencv(img_input.getNativeObjAddr(), img_output1.getNativeObjAddr(), img_output2.getNativeObjAddr(), img_output3.getNativeObjAddr(),
                 img_output4.getNativeObjAddr(), img_output5.getNativeObjAddr(),img_output6.getNativeObjAddr(), img_output7.getNativeObjAddr(),
                 img_output8.getNativeObjAddr(), img_output9.getNativeObjAddr(), img_output10.getNativeObjAddr());
+        uiHelper.toast(this, "error.");
 
         Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(img_output1, Mydata.example[0]);
 
         Mydata.example[1] = Bitmap.createBitmap(img_output2.cols(), img_output2.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output2, Mydata.example[0]);
+        Utils.matToBitmap(img_output2, Mydata.example[1]);
 
         Mydata.example[2] = Bitmap.createBitmap(img_output3.cols(), img_output3.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output3, Mydata.example[0]);
+        Utils.matToBitmap(img_output3, Mydata.example[2]);
 
         Mydata.example[3] = Bitmap.createBitmap(img_output4.cols(), img_output4.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output4, Mydata.example[0]);
+        Utils.matToBitmap(img_output4, Mydata.example[3]);
 
         Mydata.example[4] = Bitmap.createBitmap(img_output5.cols(), img_output5.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output5, Mydata.example[0]);
+        Utils.matToBitmap(img_output5, Mydata.example[4]);
 
         Mydata.example[5] = Bitmap.createBitmap(img_output6.cols(), img_output6.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output6, Mydata.example[0]);
+        Utils.matToBitmap(img_output6, Mydata.example[5]);
 
         Mydata.example[6] = Bitmap.createBitmap(img_output7.cols(), img_output7.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output7, Mydata.example[0]);
+        Utils.matToBitmap(img_output7, Mydata.example[6]);
 
         Mydata.example[7] = Bitmap.createBitmap(img_output8.cols(), img_output8.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output8, Mydata.example[0]);
+        Utils.matToBitmap(img_output8, Mydata.example[7]);
 
         Mydata.example[8] = Bitmap.createBitmap(img_output9.cols(), img_output9.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output9, Mydata.example[0]);
+        Utils.matToBitmap(img_output9, Mydata.example[8]);
 
         Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output10, Mydata.example[0]);
+        Utils.matToBitmap(img_output10, Mydata.example[9]);
 
-
-        if(Mydata.example != null) {
+/*
+        if(Mydata.example[0] != null) {
             imageButton_1.setImageBitmap(Mydata.example[0]);
             //uiHelper.toast(this, "error.");
+        }
+
+ */
+
+        if(Mydata.example[0] == null) {
+            //imageButton_1.setImageBitmap(Mydata.example[0]);
+            uiHelper.toast(this, "error.");
         }
 
         if(Mydata.myletter_element[0][0] != null) {
