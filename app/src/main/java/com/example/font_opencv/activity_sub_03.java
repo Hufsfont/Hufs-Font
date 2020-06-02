@@ -1,7 +1,6 @@
 package com.example.font_opencv;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 
 public class activity_sub_03 extends AppCompatActivity {
@@ -25,7 +23,7 @@ public class activity_sub_03 extends AppCompatActivity {
 
     ImageView imageView1;
 
-    public native void opencv(long matAddrInput, long matAddrResult);
+    //public native void opencv(long matAddrInput, long matAddrResult);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class activity_sub_03 extends AppCompatActivity {
         });
 
         //opencv_and_showResult();
-
+/*
         img_input = new Mat();
         Bitmap bitmap = Mydata.sentence_bitmap;
         Bitmap bmp32 = bitmap.copy(Bitmap.Config.ARGB_8888, true);
@@ -69,8 +67,9 @@ public class activity_sub_03 extends AppCompatActivity {
 
         if(Mydata.example != null) {
             imageView1.setImageBitmap(Mydata.example);
-            //uiHelper.toast(this, "error.");
         }
+
+ */
     }
 
 //    public native void opencv(long inputImage, long outputImage);

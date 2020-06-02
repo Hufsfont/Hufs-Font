@@ -1,9 +1,9 @@
 package com.example.font_opencv;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -14,27 +14,44 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.font_opencv.utils.UiHelper;
 
-import java.io.File;
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
 
 public class activity_sub_02 extends AppCompatActivity {
 
-    /*
+
     static {
         System.loadLibrary("opencv_java4");
         System.loadLibrary("native-lib");
     }
 
-    public native void opencv(long inputImage, long outputImage);
+    public native void opencv(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
+                              long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
 
-     */
+
+
+    //public native void opencv(long inputImage, long outputImage);
 
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
     private UiHelper uiHelper = new UiHelper();
-    //private Mat img_input;
-    //private Mat img_output;
+    private Mat img_input;
 
-    //private static final String TAG = "opencv";
+    private Mat img_output1;
+    private Mat img_output2;
+    private Mat img_output3;
+    private Mat img_output4;
+    private Mat img_output5;
+    private Mat img_output6;
+    private Mat img_output7;
+    private Mat img_output8;
+    private Mat img_output9;
+    private Mat img_output10;
+
+
+
+    //private Mat[] img_output = new Mat[10];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +84,89 @@ public class activity_sub_02 extends AppCompatActivity {
             }
         });
 
+        img_input = new Mat();
+        Bitmap bitmap2 = Mydata.sentence_bitmap;
+        Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
+        Utils.bitmapToMat(bmp32, img_input);
+
+
+        if (img_output1 == null)
+            img_output1 = new Mat();
+
+        if (img_output2 == null)
+            img_output2 = new Mat();
+
+        if (img_output3 == null)
+            img_output3 = new Mat();
+
+        if (img_output4 == null)
+            img_output4 = new Mat();
+
+        if (img_output5 == null)
+            img_output5 = new Mat();
+
+        if (img_output6 == null)
+            img_output6 = new Mat();
+
+        if (img_output7 == null)
+            img_output7 = new Mat();
+
+        if (img_output8 == null)
+            img_output8 = new Mat();
+
+        if (img_output9 == null)
+            img_output9 = new Mat();
+
+        if (img_output10 == null)
+            img_output10 = new Mat();
+
+
+
+        opencv(img_input.getNativeObjAddr(), img_output1.getNativeObjAddr(), img_output2.getNativeObjAddr(), img_output3.getNativeObjAddr(),
+                img_output4.getNativeObjAddr(), img_output5.getNativeObjAddr(),img_output6.getNativeObjAddr(), img_output7.getNativeObjAddr(),
+                img_output8.getNativeObjAddr(), img_output9.getNativeObjAddr(), img_output10.getNativeObjAddr());
+
+        Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output1, Mydata.example[0]);
+
+        Mydata.example[1] = Bitmap.createBitmap(img_output2.cols(), img_output2.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output2, Mydata.example[0]);
+
+        Mydata.example[2] = Bitmap.createBitmap(img_output3.cols(), img_output3.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output3, Mydata.example[0]);
+
+        Mydata.example[3] = Bitmap.createBitmap(img_output4.cols(), img_output4.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output4, Mydata.example[0]);
+
+        Mydata.example[4] = Bitmap.createBitmap(img_output5.cols(), img_output5.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output5, Mydata.example[0]);
+
+        Mydata.example[5] = Bitmap.createBitmap(img_output6.cols(), img_output6.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output6, Mydata.example[0]);
+
+        Mydata.example[6] = Bitmap.createBitmap(img_output7.cols(), img_output7.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output7, Mydata.example[0]);
+
+        Mydata.example[7] = Bitmap.createBitmap(img_output8.cols(), img_output8.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output8, Mydata.example[0]);
+
+        Mydata.example[8] = Bitmap.createBitmap(img_output9.cols(), img_output9.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output9, Mydata.example[0]);
+
+        Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output10, Mydata.example[0]);
+
+
+        if(Mydata.example != null) {
+            imageButton_1.setImageBitmap(Mydata.example[0]);
+            //uiHelper.toast(this, "error.");
+        }
+
         if(Mydata.myletter_element[0][0] != null) {
-            File tempFile = new File(Environment.getExternalStorageDirectory() + "/temp.jpg");
             Uri imageUri = Uri.parse(Mydata.myletter_element[0][0]);
             imageView1 = (ImageView) findViewById(R.id.imageView1);
             imageView1.setImageURI(imageUri);
+
 
         }
         /*
@@ -97,57 +192,6 @@ public class activity_sub_02 extends AppCompatActivity {
 
 
     }
-    /*
-    private String getRealPathFromURI(Uri contentUri) {
-
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        cursor.moveToFirst();
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-        return cursor.getString(column_index);
-    }
-
-    // 출처 - http://snowdeer.github.io/android/2016/02/02/android-image-rotation/
-    public int getOrientationOfImage(String filepath) {
-        ExifInterface exif = null;
-
-        try {
-            exif = new ExifInterface(filepath);
-        } catch (IOException e) {
-            Log.d("@@@", e.toString());
-            return -1;
-        }
-
-        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
-
-        if (orientation != -1) {
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    return 90;
-
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    return 180;
-
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    return 270;
-            }
-        }
-
-        return 0;
-    }
-
-    public Bitmap getRotatedBitmap(Bitmap bitmap, int degrees) throws Exception {
-        if(bitmap == null) return null;
-        if (degrees == 0) return bitmap;
-
-        Matrix m = new Matrix();
-        m.setRotate(degrees, (float) bitmap.getWidth() / 2, (float) bitmap.getHeight() / 2);
-
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, true);
-    }
-
-*/
 
 }
 

@@ -13,6 +13,6 @@ public class Mydata extends Application {
     static int[] myletter_element_count = {3,2,2,2,2,3,3,3,2,2};
     static String[][] myletter_element = new String[10][3]; // 각 자모음 크롭 이미지 주소가 저장된 변수
     static Bitmap sentence_bitmap; // 문장 비트맵 저장.
-    static Bitmap example;
+    static Bitmap[] example = new Bitmap[10];
 
 }
