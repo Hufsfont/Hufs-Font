@@ -11,10 +11,13 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.font_opencv.utils.UiHelper;
+
 public class activity_sub_02_02 extends AppCompatActivity {
 
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
+    private UiHelper uiHelper = new UiHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,14 @@ public class activity_sub_02_02 extends AppCompatActivity {
                 setContentView(new SomeView(activity_sub_02_02.this));
             }
         });
+
+        if(Mydata.example[2] != null) {
+            imageButton_1.setImageBitmap(Mydata.example[2]);
+        }
+        else{
+            uiHelper.toast(this, "error.");
+        }
+
 
         if(Mydata.myletter_element[2][0] != null) {
             Uri imageUri = Uri.parse(Mydata.myletter_element[2][0]);

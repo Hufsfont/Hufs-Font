@@ -19,23 +19,18 @@ import org.opencv.core.Mat;
 
 public class activity_sub_02 extends AppCompatActivity {
 
-
     static {
         System.loadLibrary("opencv_java4");
         System.loadLibrary("native-lib");
     }
 
-    public native void opencv(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
-                              long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
-
-
-
-    //public native void opencv(long inputImage, long outputImage);
-
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
     private UiHelper uiHelper = new UiHelper();
+
     private Mat img_input;
+    //private Mat img_output;
+    //List<Mat> img_outputs = new ArrayList<Mat>();
 
     private Mat img_output1;
     private Mat img_output2;
@@ -49,9 +44,20 @@ public class activity_sub_02 extends AppCompatActivity {
     private Mat img_output10;
 
 
+    //private Mat[] img_outputs = new Mat[50];
 
-    //private Mat[] img_output = new Mat[10];
 
+    public native void opencv_02(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
+                              long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
+
+
+    //public native void opencv_02_array(long inputImage, Mat[] outputImage);
+
+    //public native void opencv_02_for2(long inputImage, long outputImage1, long outputImage2);
+
+
+
+    //public native void opencv_02_test(long inputImage, long outputImage);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +91,16 @@ public class activity_sub_02 extends AppCompatActivity {
         });
 
         img_input = new Mat();
-        Bitmap bitmap2 = Mydata.sentence_bitmap;
-        Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
-        Utils.bitmapToMat(bmp32, img_input);
+        //Bitmap bitmap2 = Mydata.sentence_bitmap;
+        //Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
+        Utils.bitmapToMat(Mydata.sentence_bitmap, img_input);
+
+
+/*
+        if (img_output == null)
+            img_output = new Mat();
+
+ */
 
 
         if (img_output1 == null)
@@ -121,11 +134,39 @@ public class activity_sub_02 extends AppCompatActivity {
             img_output10 = new Mat();
 
 
-        uiHelper.toast(this, "error.");
-        opencv(img_input.getNativeObjAddr(), img_output1.getNativeObjAddr(), img_output2.getNativeObjAddr(), img_output3.getNativeObjAddr(),
+        //uiHelper.toast(this, "error.");
+
+
+        opencv_02(img_input.getNativeObjAddr(), img_output1.getNativeObjAddr(), img_output2.getNativeObjAddr(), img_output3.getNativeObjAddr(),
                 img_output4.getNativeObjAddr(), img_output5.getNativeObjAddr(),img_output6.getNativeObjAddr(), img_output7.getNativeObjAddr(),
                 img_output8.getNativeObjAddr(), img_output9.getNativeObjAddr(), img_output10.getNativeObjAddr());
-        uiHelper.toast(this, "error.");
+
+
+        //opencv_02_array(img_input.getNativeObjAddr(), img_outputs);
+
+        //opencv_02_test(img_input.getNativeObjAddr(), img_output.getNativeObjAddr());
+
+        //img_outputs = opencv_02_arraylist(img_input.getNativeObjAddr());
+
+        //opencv_02_for2(img_input.getNativeObjAddr(), img_output1.getNativeObjAddr(), img_output2.getNativeObjAddr());
+
+        /*
+        for(int i = 0; i < 50; i++){
+            Mydata.example[i] = Bitmap.createBitmap(img_outputs[i].cols(), img_outputs[i].rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_outputs[i], Mydata.example[i]);
+            i++;
+        }
+
+         */
+
+        //uiHelper.toast(this, "output met->bitmap");
+
+/*
+        Mydata.example[0] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[0]);
+
+ */
+
 
         Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(img_output1, Mydata.example[0]);
@@ -158,32 +199,51 @@ public class activity_sub_02 extends AppCompatActivity {
         Utils.matToBitmap(img_output10, Mydata.example[9]);
 
 /*
+
+        Mydata.example[0] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[0]);
+
+        Mydata.example[1] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[1]);
+
+        Mydata.example[2] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[2]);
+
+        Mydata.example[3] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[3]);
+
+        Mydata.example[4] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[4]);
+
+        Mydata.example[5] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[5]);
+
+        Mydata.example[6] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[6]);
+
+        Mydata.example[7] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[7]);
+
+        Mydata.example[8] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[8]);
+
+        Mydata.example[9] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img_output, Mydata.example[9]);
+*/
+
         if(Mydata.example[0] != null) {
             imageButton_1.setImageBitmap(Mydata.example[0]);
-            //uiHelper.toast(this, "error.");
         }
-
- */
-
-        if(Mydata.example[0] == null) {
-            //imageButton_1.setImageBitmap(Mydata.example[0]);
+        else{
             uiHelper.toast(this, "error.");
         }
+
 
         if(Mydata.myletter_element[0][0] != null) {
             Uri imageUri = Uri.parse(Mydata.myletter_element[0][0]);
             imageView1 = (ImageView) findViewById(R.id.imageView1);
             imageView1.setImageURI(imageUri);
-
-
         }
-        /*
-        if(Mydata.example != null) {
-            imageButton_1.setImageBitmap(Mydata.example);
-            //uiHelper.toast(this, "error.");
-        }
-         */
-
 
         if(Mydata.myletter_element[0][1] != null) {
             Uri imageUri = Uri.parse(Mydata.myletter_element[0][1]);
@@ -196,8 +256,6 @@ public class activity_sub_02 extends AppCompatActivity {
             imageView3 = (ImageView) findViewById(R.id.imageView3);
             imageView3.setImageURI(imageUri);
         }
-
-
 
     }
 
