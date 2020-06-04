@@ -233,89 +233,153 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
                     img_output4.getNativeObjAddr(), img_output5.getNativeObjAddr(),img_output6.getNativeObjAddr(), img_output7.getNativeObjAddr(),
                     img_output8.getNativeObjAddr(), img_output9.getNativeObjAddr(), img_output10.getNativeObjAddr());
 
-            if(img_output1 != null){
-                Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output1, Mydata.example[0]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output1, Mydata.example[0]);
 
-            if(img_output2 != null){
-                Mydata.example[1] = Bitmap.createBitmap(img_output2.cols(), img_output2.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output2, Mydata.example[1]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[1] = Bitmap.createBitmap(img_output2.cols(), img_output2.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output2, Mydata.example[1]);
 
-            if(img_output3 != null){
-                Mydata.example[2] = Bitmap.createBitmap(img_output3.cols(), img_output3.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output3, Mydata.example[2]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[2] = Bitmap.createBitmap(img_output3.cols(), img_output3.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output3, Mydata.example[2]);
 
-            if(img_output4 != null){
-                Mydata.example[3] = Bitmap.createBitmap(img_output4.cols(), img_output4.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output4, Mydata.example[3]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[3] = Bitmap.createBitmap(img_output4.cols(), img_output4.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output4, Mydata.example[3]);
 
-            if(img_output5 != null){
-                Mydata.example[4] = Bitmap.createBitmap(img_output5.cols(), img_output5.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output5, Mydata.example[4]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[4] = Bitmap.createBitmap(img_output5.cols(), img_output5.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output5, Mydata.example[4]);
 
-            if(img_output6 != null){
-                Mydata.example[5] = Bitmap.createBitmap(img_output6.cols(), img_output6.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output6, Mydata.example[5]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[5] = Bitmap.createBitmap(img_output6.cols(), img_output6.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output6, Mydata.example[5]);
 
-            if(img_output7 != null){
-                Mydata.example[6] = Bitmap.createBitmap(img_output7.cols(), img_output7.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output7, Mydata.example[6]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[6] = Bitmap.createBitmap(img_output7.cols(), img_output7.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output7, Mydata.example[6]);
 
-            if(img_output8 != null){
-                Mydata.example[7] = Bitmap.createBitmap(img_output8.cols(), img_output8.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output8, Mydata.example[7]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[7] = Bitmap.createBitmap(img_output8.cols(), img_output8.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output8, Mydata.example[7]);
 
-            if(img_output9 != null){
-                Mydata.example[8] = Bitmap.createBitmap(img_output9.cols(), img_output9.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output9, Mydata.example[8]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
+            Mydata.example[8] = Bitmap.createBitmap(img_output9.cols(), img_output9.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output9, Mydata.example[8]);
 
-            if(img_output10 != null){
-                Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
-                Utils.matToBitmap(img_output10, Mydata.example[9]);
-            }
-            else{
-                uiHelper.toast(this, "null image");
-            }
-
+            Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output10, Mydata.example[9]);
         } catch (Exception e) {
             uiHelper.toast(this, "Please select different profile picture.");
         }
+/*
+        if (img_output1 == null)
+            img_output1 = new Mat();
+
+        if (img_output2 == null)
+            img_output2 = new Mat();
+
+        if (img_output3 == null)
+            img_output3 = new Mat();
+
+        if (img_output4 == null)
+            img_output4 = new Mat();
+
+        if (img_output5 == null)
+            img_output5 = new Mat();
+
+        if (img_output6 == null)
+            img_output6 = new Mat();
+
+        if (img_output7 == null)
+            img_output7 = new Mat();
+
+        if (img_output8 == null)
+            img_output8 = new Mat();
+
+        if (img_output9 == null)
+            img_output9 = new Mat();
+
+        if (img_output10 == null)
+            img_output10 = new Mat();
+
+        opencv_01(img_input.getNativeObjAddr(), img_output1.getNativeObjAddr(), img_output2.getNativeObjAddr(), img_output3.getNativeObjAddr(),
+                img_output4.getNativeObjAddr(), img_output5.getNativeObjAddr(),img_output6.getNativeObjAddr(), img_output7.getNativeObjAddr(),
+                img_output8.getNativeObjAddr(), img_output9.getNativeObjAddr(), img_output10.getNativeObjAddr());
+
+        if(img_output1 != null){
+            Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output1, Mydata.example[0]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output2 != null){
+            Mydata.example[1] = Bitmap.createBitmap(img_output2.cols(), img_output2.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output2, Mydata.example[1]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output3 != null){
+            Mydata.example[2] = Bitmap.createBitmap(img_output3.cols(), img_output3.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output3, Mydata.example[2]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output4 != null){
+            Mydata.example[3] = Bitmap.createBitmap(img_output4.cols(), img_output4.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output4, Mydata.example[3]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output5 != null){
+            Mydata.example[4] = Bitmap.createBitmap(img_output5.cols(), img_output5.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output5, Mydata.example[4]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output6 != null){
+            Mydata.example[5] = Bitmap.createBitmap(img_output6.cols(), img_output6.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output6, Mydata.example[5]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output7 != null){
+            Mydata.example[6] = Bitmap.createBitmap(img_output7.cols(), img_output7.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output7, Mydata.example[6]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output8 != null){
+            Mydata.example[7] = Bitmap.createBitmap(img_output8.cols(), img_output8.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output8, Mydata.example[7]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output9 != null){
+            Mydata.example[8] = Bitmap.createBitmap(img_output9.cols(), img_output9.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output9, Mydata.example[8]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+
+        if(img_output10 != null){
+            Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output10, Mydata.example[9]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }*/
+
 
     }
 
