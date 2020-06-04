@@ -148,28 +148,28 @@ public class activity_sub_02 extends AppCompatActivity {
 
 
 
-        if(Mydata.example[0] != null) {
-            imageButton_1.setImageBitmap(Mydata.example[0]);
+        if(Mydata.example[Mydata.data_count] != null) {
+            imageButton_1.setImageBitmap(Mydata.example[Mydata.data_count]);
         }
         else{
             uiHelper.toast(this, "error.");
         }
 
 
-        if(Mydata.myletter_element[0][0] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[0][0]);
+        if(Mydata.myletter_element[Mydata.data_count][0] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[Mydata.data_count][0]);
             imageView1 = (ImageView) findViewById(R.id.imageView1);
             imageView1.setImageURI(imageUri);
         }
 
-        if(Mydata.myletter_element[0][1] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[0][1]);
+        if(Mydata.myletter_element[Mydata.data_count][1] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[Mydata.data_count][1]);
             imageView2 = (ImageView) findViewById(R.id.imageView2);
             imageView2.setImageURI(imageUri);
         }
 
-        if(Mydata.myletter_element[0][2] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[0][2]);
+        if(Mydata.myletter_element[Mydata.data_count][2] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[Mydata.data_count][2]);
             imageView3 = (ImageView) findViewById(R.id.imageView3);
             imageView3.setImageURI(imageUri);
         }

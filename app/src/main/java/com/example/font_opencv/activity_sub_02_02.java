@@ -38,7 +38,8 @@ public class activity_sub_02_02 extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), activity_sub_03.class);
+                Mydata.data_count++;
+                Intent intent = new Intent(getApplicationContext(), activity_sub_02_03.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -50,27 +51,27 @@ public class activity_sub_02_02 extends AppCompatActivity {
             }
         });
 
-        if(Mydata.example[2] != null) {
-            imageButton_1.setImageBitmap(Mydata.example[2]);
+        if(Mydata.example[Mydata.data_count] != null) {
+            imageButton_1.setImageBitmap(Mydata.example[Mydata.data_count]);
         }
         else{
             uiHelper.toast(this, "error.");
         }
 
 
-        if(Mydata.myletter_element[2][0] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[2][0]);
+        if(Mydata.myletter_element[Mydata.data_count][0] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[Mydata.data_count][0]);
             imageView1 = (ImageView) findViewById(R.id.imageView1);
             imageView1.setImageURI(imageUri);
         }
 
-        if(Mydata.myletter_element[2][1] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[2][1]);
+        if(Mydata.myletter_element[Mydata.data_count][1] != null) {
+            Uri imageUri = Uri.parse(Mydata.myletter_element[Mydata.data_count][1]);
             imageView2 = (ImageView) findViewById(R.id.imageView2);
             imageView2.setImageURI(imageUri);
         }
 
-        if(Mydata.myletter_element[2][2] != null) {
+        if(Mydata.myletter_element[Mydata.data_count][2] != null) {
             Uri imageUri = Uri.parse(Mydata.myletter_element[2][2]);
             imageView3 = (ImageView) findViewById(R.id.imageView3);
             imageView3.setImageURI(imageUri);
