@@ -55,7 +55,7 @@ public class activity_sub_02_01 extends AppCompatActivity {
             imageButton_1.setImageBitmap(Mydata.example[1]);
         }
         else{
-            uiHelper.toast(this, "error.");
+            uiHelper.toast(this, "이미지 인식에 실패하여 크롭된 이미지가 없습니다.");
         }
 
         if(Mydata.myletter_element[Mydata.data_count][0] != null) {
