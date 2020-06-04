@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.font_opencv.utils.UiHelper;
 
-public class activity_sub_02_02 extends AppCompatActivity {
+public class activity_sub_02_03 extends AppCompatActivity {
 
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
@@ -24,7 +24,7 @@ public class activity_sub_02_02 extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub_02_02);
+        setContentView(R.layout.activity_sub_02_03);
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +38,7 @@ public class activity_sub_02_02 extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), activity_sub_02_03.class);
+                Intent intent = new Intent(getApplicationContext(), activity_sub_02_04.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -46,7 +46,7 @@ public class activity_sub_02_02 extends AppCompatActivity {
         ImageButton imageButton_1 = findViewById(R.id.imageButton_1); // 도움말 표시하기
         imageButton_1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                setContentView(new SomeView(activity_sub_02_02.this));
+                setContentView(new SomeView(activity_sub_02_03.this));
             }
         });
 
@@ -71,7 +71,7 @@ public class activity_sub_02_02 extends AppCompatActivity {
         }
 
         if(Mydata.myletter_element[Mydata.data_count][2] != null) {
-            Uri imageUri = Uri.parse(Mydata.myletter_element[2][2]);
+            Uri imageUri = Uri.parse(Mydata.myletter_element[Mydata.data_count][2]);
             imageView3 = (ImageView) findViewById(R.id.imageView3);
             imageView3.setImageURI(imageUri);
         }

@@ -23,7 +23,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".activity_sub_02_02"></activity>
+        <activity android:name=".activity_sub_02_09"></activity>
+        <activity android:name=".activity_sub_02_08" />
+        <activity android:name=".activity_sub_02_07" />
+        <activity android:name=".activity_sub_02_06" />
+        <activity android:name=".activity_sub_02_05" />
+        <activity android:name=".activity_sub_02_04" />
+        <activity android:name=".activity_sub_02_03" />
+        <activity android:name=".activity_sub_02_02" />
         <activity android:name=".activity_sub_02_01" />
         <activity android:name=".CropActivity" />
         <activity android:name=".SomeView" />
