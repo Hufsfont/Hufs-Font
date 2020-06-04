@@ -38,6 +38,7 @@ public class activity_sub_02_03 extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                Mydata.data_count++;
                 Intent intent = new Intent(getApplicationContext(), activity_sub_02_04.class);
                 startActivityForResult(intent, 1);
             }
