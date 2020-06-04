@@ -1,7 +1,6 @@
 package com.example.font_opencv;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -14,20 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.font_opencv.utils.UiHelper;
 
-import org.opencv.android.Utils;
-import org.opencv.core.Mat;
-
 public class activity_sub_02 extends AppCompatActivity {
-
+/*
     static {
         System.loadLibrary("opencv_java4");
         System.loadLibrary("native-lib");
     }
 
+ */
+
     ImageView imageView1, imageView2, imageView3;
     private String currentPhotoPath = "";
     private UiHelper uiHelper = new UiHelper();
-
+/*
     private Mat img_input;
 
     private Mat img_output1;
@@ -41,9 +39,11 @@ public class activity_sub_02 extends AppCompatActivity {
     private Mat img_output9;
     private Mat img_output10;
 
+ */
+/*
     public native void opencv_02(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
                               long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -74,7 +74,7 @@ public class activity_sub_02 extends AppCompatActivity {
                 setContentView(new SomeView(activity_sub_02.this));
             }
         });
-
+/*
         img_input = new Mat();
         //Bitmap bitmap2 = Mydata.sentence_bitmap;
         //Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
@@ -115,44 +115,95 @@ public class activity_sub_02 extends AppCompatActivity {
                 img_output4.getNativeObjAddr(), img_output5.getNativeObjAddr(),img_output6.getNativeObjAddr(), img_output7.getNativeObjAddr(),
                 img_output8.getNativeObjAddr(), img_output9.getNativeObjAddr(), img_output10.getNativeObjAddr());
 
+        if(img_output1 != null){
+            Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output1, Mydata.example[0]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[0] = Bitmap.createBitmap(img_output1.cols(), img_output1.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output1, Mydata.example[0]);
+        if(img_output2 != null){
+            Mydata.example[1] = Bitmap.createBitmap(img_output2.cols(), img_output2.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output2, Mydata.example[1]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[1] = Bitmap.createBitmap(img_output2.cols(), img_output2.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output2, Mydata.example[1]);
 
-        Mydata.example[2] = Bitmap.createBitmap(img_output3.cols(), img_output3.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output3, Mydata.example[2]);
+        if(img_output3 != null){
+            Mydata.example[2] = Bitmap.createBitmap(img_output3.cols(), img_output3.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output3, Mydata.example[2]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[3] = Bitmap.createBitmap(img_output4.cols(), img_output4.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output4, Mydata.example[3]);
+        if(img_output4 != null){
+            Mydata.example[3] = Bitmap.createBitmap(img_output4.cols(), img_output4.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output4, Mydata.example[3]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[4] = Bitmap.createBitmap(img_output5.cols(), img_output5.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output5, Mydata.example[4]);
 
-        Mydata.example[5] = Bitmap.createBitmap(img_output6.cols(), img_output6.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output6, Mydata.example[5]);
+        if(img_output5 != null){
+            Mydata.example[4] = Bitmap.createBitmap(img_output5.cols(), img_output5.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output5, Mydata.example[4]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[6] = Bitmap.createBitmap(img_output7.cols(), img_output7.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output7, Mydata.example[6]);
+        if(img_output6 != null){
+            Mydata.example[5] = Bitmap.createBitmap(img_output6.cols(), img_output6.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output6, Mydata.example[5]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[7] = Bitmap.createBitmap(img_output8.cols(), img_output8.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output8, Mydata.example[7]);
+        if(img_output7 != null){
+            Mydata.example[6] = Bitmap.createBitmap(img_output7.cols(), img_output7.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output7, Mydata.example[6]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[8] = Bitmap.createBitmap(img_output9.cols(), img_output9.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output9, Mydata.example[8]);
+        if(img_output8 != null){
+            Mydata.example[7] = Bitmap.createBitmap(img_output8.cols(), img_output8.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output8, Mydata.example[7]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
-        Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img_output10, Mydata.example[9]);
+        if(img_output9 != null){
+            Mydata.example[8] = Bitmap.createBitmap(img_output9.cols(), img_output9.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output9, Mydata.example[8]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
 
+        if(img_output10 != null){
+            Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output10, Mydata.example[9]);
+        }
+        else{
+            uiHelper.toast(this, "null image");
+        }
+*/
 
 
         if(Mydata.example[Mydata.data_count] != null) {
             imageButton_1.setImageBitmap(Mydata.example[Mydata.data_count]);
         }
         else{
-            uiHelper.toast(this, "error.");
+            uiHelper.toast(this, "이미지 인식에 실패하여 크롭된 이미지가 없습니다.");
         }
 
 
