@@ -1,7 +1,5 @@
 package com.example.font_opencv;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +8,10 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.font_opencv.utils.UiHelper;
 
 public class activity_sub_02_06 extends AppCompatActivity {
 
