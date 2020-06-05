@@ -46,14 +46,51 @@ public class SomeView extends View implements View.OnTouchListener {
 
         mContext = c;
 
-
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((AppCompatActivity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
-        Bitmap original = Mydata.example[Mydata.data_count];
+        Bitmap original = BitmapFactory.decodeResource(getResources(), R.drawable.sample1);
+
+        if (Mydata.data_count == 1) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample2);
+        }
+
+        if (Mydata.data_count == 2) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample3);
+        }
+
+        if (Mydata.data_count == 3) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample4);
+        }
+
+        if (Mydata.data_count == 4) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample5);
+        }
+
+        if (Mydata.data_count == 5) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample6);
+        }
+
+        if (Mydata.data_count == 6) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample7);
+        }
+
+        if (Mydata.data_count == 7) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample8);
+        }
+
+        if (Mydata.data_count == 8) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample9);
+        }
+
+        if (Mydata.data_count == 9) {
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.sample10);
+        }
+
+        if (Mydata.example[Mydata.data_count] != null)
+            original = Mydata.example[Mydata.data_count];
 
         float scale = (float) ((width/(float)original.getWidth()));
 
