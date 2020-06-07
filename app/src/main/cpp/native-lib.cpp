@@ -208,7 +208,7 @@ Java_com_example_font_1opencv_activity_1sub_101_opencv_101(JNIEnv *env, jobject 
     //이미지를 부드럽게 만듦 (입력이미지,출력이미지,...)
     GaussianBlur(input_gray_image, input_gray_image, cv::Point(5, 5), 0);
     //이미지를 이진화 (입력이미지,출력이미지,...)
-    adaptiveThreshold(input_gray_image, result_binary_image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 29, 7);
+    adaptiveThreshold(input_gray_image, result_binary_image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 29, 3);
     //이미지 잡음 제거 (입력이미지,출력이미지...)
     morphologyEx(result_binary_image, result_binary_image, cv::MORPH_CLOSE, kernel); //close
     //색 반전: deliate연산을 위해
@@ -229,7 +229,7 @@ Java_com_example_font_1opencv_activity_1sub_101_opencv_101(JNIEnv *env, jobject 
         for (int idx = 0; idx < contours.size(); idx++) {
             Rect rect = boundingRect(contours[idx]);
             //알맞은 사각형 조건 (수정)
-            if (rect.width < 2000 && rect.height > 290 && rect.height * rect.width > 200000) {
+            if (rect.width < 2000 && rect.height > 200 && rect.height * rect.width > 160000) {
                 //rectangle(input_origin_image, Point(rect.x, rect.y), Point(rect.x + rect.width, rect.y + rect.height), Scalar(0, 255, 0), 3);
                 switch(cnt)
                 {
