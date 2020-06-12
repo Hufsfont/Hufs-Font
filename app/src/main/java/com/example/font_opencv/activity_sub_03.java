@@ -22,6 +22,8 @@ public class activity_sub_03 extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
 
+
+
     //private Mat img_input;
     //private Mat img_output;
     private UiHelper uiHelper = new UiHelper();
@@ -80,7 +82,7 @@ public class activity_sub_03 extends AppCompatActivity {
         Utils.matToBitmap(img_output, Mydata.example[1]);
 
  */
-
+/*
         Mydata.consonant[0] = Mydata.myletter_element_b[0][0]; //ㄱ :
         Mydata.consonant[1] = Mydata.myletter_element_b[5][2]; //ㄴ :
         Mydata.consonant[2] = Mydata.myletter_element_b[4][0]; //ㄷ :
@@ -107,25 +109,46 @@ public class activity_sub_03 extends AppCompatActivity {
         Mydata.vowel[8] = Mydata.myletter_element_b[5][1]; //ㅡ :
         Mydata.vowel[9] = Mydata.myletter_element_b[2][1]; //ㅣ :
 
+ */
+
 
         img_input1 = new Mat();
         img_input2 = new Mat();
         img_input3 = new Mat();
         //Bitmap bitmap2 = Mydata.sentence_bitmap;
         //Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
-        Utils.bitmapToMat(Mydata.consonant[0], img_input1);
-        Utils.bitmapToMat(Mydata.vowel[0], img_input2);
-        Utils.bitmapToMat(Mydata.consonant[7], img_input3);
+/*
+        if(Mydata.consonant[0] == null){
+            uiHelper.toast(this, "ㄱ에 실패하여 크롭된 이미지가 없습니다.");
+        }
+        if(Mydata.vowel[0] == null){
+            uiHelper.toast(this, "ㅏ에 실패하여 크롭된 이미지가 없습니다.");
+        }
+        if(Mydata.consonant[7] == null){
+            uiHelper.toast(this, "ㅇ에 실패하여 크롭된 이미지가 없습니다.");
+        }
+
+ */
+
+
+        Utils.bitmapToMat(Mydata.myletter_element_b[0][0], img_input1);
+        Utils.bitmapToMat(Mydata.myletter_element_b[4][1], img_input2);
+        Utils.bitmapToMat(Mydata.myletter_element_b[7][2], img_input3);
 
         if (img_output == null)
             img_output = new Mat();
 
-        make_words_03(img_input1.getNativeObjAddr(), img_input2.getNativeObjAddr(), img_input3.getNativeObjAddr(), img_output.getNativeObjAddr());
+        if(img_input1 != null && img_input2 != null && img_input3 != null){
+            make_words_03(img_input1.getNativeObjAddr(), img_input2.getNativeObjAddr(), img_input3.getNativeObjAddr(), img_output.getNativeObjAddr());
+        }
+
 
         if(img_output != null){
             Mydata.maked_letter[0] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(img_output, Mydata.maked_letter[0]);
         }
+
+
 
 
         imageView1 = (ImageView) findViewById(R.id.imageView1);

@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +33,7 @@ public class activity_sub_02_09 extends AppCompatActivity {
 
     private Mat img_output;
 
-    public native void make_words(long inputImage1, long inputImage2, long inputImage3, long outputImage);
+    //public native void make_words(long inputImage1, long inputImage2, long inputImage3, long outputImage);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,18 @@ public class activity_sub_02_09 extends AppCompatActivity {
                 img_input1 = new Mat();
                 img_input2 = new Mat();
                 img_input3 = new Mat();
+                */
 
+                for(int i = 0; i < 10; i++){
+                    for(int j = 0; j < 3; j++){
+                        if(Mydata.myletter_element_b[i][j] == null){
+                            String msg = Integer.toString(i) + Integer.toString(j);
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                }
+                /*
                 Mydata.consonant[0] = Mydata.myletter_element_b[0][0]; //ㄱ :
                 Mydata.consonant[1] = Mydata.myletter_element_b[5][2]; //ㄴ :
                 Mydata.consonant[2] = Mydata.myletter_element_b[4][0]; //ㄷ :
@@ -84,6 +96,11 @@ public class activity_sub_02_09 extends AppCompatActivity {
                 Mydata.vowel[8] = Mydata.myletter_element_b[5][1]; //ㅡ :
                 Mydata.vowel[9] = Mydata.myletter_element_b[2][1]; //ㅣ :
 
+                 */
+
+
+
+                /*
                 //Bitmap bitmap2 = Mydata.sentence_bitmap;
                 //Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
                 Utils.bitmapToMat(Mydata.consonant[0], img_input1);
@@ -99,9 +116,7 @@ public class activity_sub_02_09 extends AppCompatActivity {
                     Mydata.maked_letter[0] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
                     Utils.matToBitmap(img_output, Mydata.maked_letter[0]);
                 }
-
                  */
-
 
 
                 Intent intent = new Intent(getApplicationContext(), activity_sub_03.class);
