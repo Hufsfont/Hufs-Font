@@ -14,5 +14,9 @@ public class Mydata extends Application {
     static String[][] myletter_element = new String[10][3]; // 각 자모음 크롭 이미지 주소가 저장된 변수
     static Bitmap sentence_bitmap; // 문장 비트맵 저장.
     static Bitmap[] example = new Bitmap[10];
+    static Bitmap[] consonant = new Bitmap[14];
+    static Bitmap[] vowel = new Bitmap[9];
+    static Bitmap[][] myletter_element_b = new Bitmap[10][3];
+    static Bitmap[] maked_letter = new Bitmap[9];
 
 }

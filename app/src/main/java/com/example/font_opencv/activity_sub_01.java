@@ -66,8 +66,10 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
     private Mat img_output9;
     private Mat img_output10;
 
+
     public native void opencv_01(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
                                  long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
+
 
 
     @Override
@@ -199,6 +201,8 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
             //Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
             Utils.bitmapToMat(Mydata.sentence_bitmap, img_input);
 
+
+
             if (img_output1 == null)
                 img_output1 = new Mat();
 
@@ -262,6 +266,9 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
 
             Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(img_output10, Mydata.example[9]);
+
+
+
         } catch (Exception e) {
             uiHelper.toast(this, "Please select different profile picture.");
         }
