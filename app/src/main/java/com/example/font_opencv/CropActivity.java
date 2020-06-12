@@ -104,6 +104,62 @@ public class CropActivity extends AppCompatActivity {
                     Mydata.data_element_count[Mydata.data_count]++;
                     startActivity(intent);
                 }
+
+                if (Mydata.data_count == 3) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Mydata.myletter_element_b[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = resultingImage;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_03.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 4) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Mydata.myletter_element_b[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = resultingImage;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_04.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 5) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Mydata.myletter_element_b[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = resultingImage;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_05.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 6) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Mydata.myletter_element_b[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = resultingImage;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_06.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 7) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Mydata.myletter_element_b[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = resultingImage;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_07.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 8) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Mydata.myletter_element_b[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = resultingImage;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_08.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 9) {
+                    Mydata.myletter_element[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = currentPhotoPath;
+                    Mydata.myletter_element_b[Mydata.data_count][Mydata.data_element_count[Mydata.data_count]] = resultingImage;
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_09.class);
+                    Mydata.data_element_count[Mydata.data_count]++;
+                    startActivity(intent);
+                }
             }
         });
 
@@ -122,6 +178,41 @@ public class CropActivity extends AppCompatActivity {
 
                 if (Mydata.data_count == 2) {
                     Intent intent = new Intent(CropActivity.this, activity_sub_02_02.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 3) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_03.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 4) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_04.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 5) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_05.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 6) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_06.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 7) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_07.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 8) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_08.class);
+                    startActivity(intent);
+                }
+
+                if (Mydata.data_count == 9) {
+                    Intent intent = new Intent(CropActivity.this, activity_sub_02_09.class);
                     startActivity(intent);
                 }
             }
