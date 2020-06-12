@@ -415,3 +415,35 @@ Java_com_example_font_1opencv_activity_1sub_102_109_make_1words(JNIEnv *env, job
     //destroyAllWindows();
 
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_make_1words_103(JNIEnv *env, jobject thiz,
+                                                                jlong input_image1,
+                                                                jlong input_image2,
+                                                                jlong input_image3,
+                                                                jlong output_image) {
+    Mat &first = *(Mat *) input_image1;
+    Mat &medi = *(Mat *) input_image2;
+    Mat &final = *(Mat *) input_image3;
+    Mat dst; //가로로 이미지 붙인 결과
+    Mat &dst_1 = *(Mat *) output_image; //세로로 이미지 붙인 결과
+
+
+    resize(first, first, Size(300, 300), INTER_LINEAR);
+    resize(medi, medi, Size(200, 300), INTER_LINEAR);
+    resize(final, final, Size(500, 300), INTER_LINEAR);
+
+    hconcat(first, medi, dst); //가로로 이미지 붙이기
+
+    vconcat(dst, final, dst_1); //세로로 이미지 붙이기
+
+    //이진화해서 글자만 추출하기
+    //열거상수 THRESH_BINARY_INV
+    threshold(dst_1, dst_1, 170, 255, THRESH_BINARY_INV);
+
+    //색반전
+    dst_1 = ~dst_1;
+
+    resize(dst_1, dst_1, Size(500, 500), INTER_AREA);
+}

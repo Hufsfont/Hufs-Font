@@ -1,7 +1,6 @@
 package com.example.font_opencv;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.font_opencv.utils.UiHelper;
 
-import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 
 public class activity_sub_02_09 extends AppCompatActivity {
@@ -55,6 +53,7 @@ public class activity_sub_02_09 extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                /*
                 img_input1 = new Mat();
                 img_input2 = new Mat();
                 img_input3 = new Mat();
@@ -100,6 +99,8 @@ public class activity_sub_02_09 extends AppCompatActivity {
                     Mydata.maked_letter[0] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
                     Utils.matToBitmap(img_output, Mydata.maked_letter[0]);
                 }
+
+                 */
 
 
 
