@@ -240,7 +240,7 @@
         android:layout_marginLeft="32dp"
         android:background="#CACACA"
         android:gravity="center"
-        android:text="다"
+        android:text="강"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />

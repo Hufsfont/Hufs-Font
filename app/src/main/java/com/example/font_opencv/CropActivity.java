@@ -54,6 +54,10 @@ public class CropActivity extends AppCompatActivity {
 
         compositeImageView = (ImageView) findViewById(R.id.imageview);
 
+        widthOfscreen = bitmap.getWidth();
+        heightOfScreen = bitmap.getHeight();
+
+
 
         Bitmap resultingImage = Bitmap.createBitmap(widthOfscreen, heightOfScreen, bitmap.getConfig());
 

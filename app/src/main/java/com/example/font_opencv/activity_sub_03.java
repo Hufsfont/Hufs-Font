@@ -115,6 +115,7 @@ public class activity_sub_03 extends AppCompatActivity {
         img_input1 = new Mat();
         img_input2 = new Mat();
         img_input3 = new Mat();
+
         //Bitmap bitmap2 = Mydata.sentence_bitmap;
         //Bitmap bmp32 = bitmap2.copy(Bitmap.Config.ARGB_8888, true);
 /*
@@ -138,14 +139,27 @@ public class activity_sub_03 extends AppCompatActivity {
         if (img_output == null)
             img_output = new Mat();
 
+
         if(img_input1 != null && img_input2 != null && img_input3 != null){
             make_words_03(img_input1.getNativeObjAddr(), img_input2.getNativeObjAddr(), img_input3.getNativeObjAddr(), img_output.getNativeObjAddr());
         }
 
-
         if(img_output != null){
             Mydata.maked_letter[0] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(img_output, Mydata.maked_letter[0]);
+        }
+
+        Utils.bitmapToMat(Mydata.myletter_element_b[9][0], img_input1);
+        Utils.bitmapToMat(Mydata.myletter_element_b[4][1], img_input2);
+        Utils.bitmapToMat(Mydata.myletter_element_b[6][0], img_input3);
+
+        if(img_input1 != null && img_input2 != null && img_input3 != null){
+            make_words_03(img_input1.getNativeObjAddr(), img_input2.getNativeObjAddr(), img_input3.getNativeObjAddr(), img_output.getNativeObjAddr());
+        }
+
+        if(img_output != null){
+            Mydata.maked_letter[1] = Bitmap.createBitmap(img_output.cols(), img_output.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(img_output, Mydata.maked_letter[1]);
         }
 
 
@@ -165,6 +179,13 @@ public class activity_sub_03 extends AppCompatActivity {
 
         if(Mydata.maked_letter[0] != null) {
             imageView6.setImageBitmap(Mydata.maked_letter[0]);
+        }
+        else{
+            uiHelper.toast(this, "error.");
+        }
+
+        if(Mydata.maked_letter[1] != null) {
+            imageView2.setImageBitmap(Mydata.maked_letter[1]);
         }
         else{
             uiHelper.toast(this, "error.");
