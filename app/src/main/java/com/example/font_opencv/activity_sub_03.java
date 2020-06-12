@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.font_opencv.utils.UiHelper;
 
 import org.opencv.android.Utils;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
 
 public class activity_sub_03 extends AppCompatActivity {
 
@@ -40,6 +42,8 @@ public class activity_sub_03 extends AppCompatActivity {
     private Mat img_output;
 
     public native void make_words_03(long inputImage1, long inputImage2, long inputImage3, long outputImage);
+
+    //public native void making_test(long inputImage, long outputImage);
 
     ImageView imageView1, imageView2, imageView3, imageView6, imageView7, imageView8, imageView9, imageView10, imageView11;
 
@@ -82,6 +86,7 @@ public class activity_sub_03 extends AppCompatActivity {
         Utils.matToBitmap(img_output, Mydata.example[1]);
 
  */
+        //Mydata.match();
 /*
         Mydata.consonant[0] = Mydata.myletter_element_b[0][0]; //ㄱ :
         Mydata.consonant[1] = Mydata.myletter_element_b[5][2]; //ㄴ :
@@ -130,14 +135,30 @@ public class activity_sub_03 extends AppCompatActivity {
         }
 
  */
+/*
+        if(Mydata.consonant[0] == null)
+            uiHelper.toast(this, "이미지가 없습니다.");
 
+ */
 
         Utils.bitmapToMat(Mydata.myletter_element_b[0][0], img_input1);
         Utils.bitmapToMat(Mydata.myletter_element_b[4][1], img_input2);
         Utils.bitmapToMat(Mydata.myletter_element_b[7][2], img_input3);
 
+
+
+
+/*
+        Utils.bitmapToMat(Mydata.consonant[0], img_input1);
+        Utils.bitmapToMat(Mydata.vowel[0], img_input2);
+        Utils.bitmapToMat(Mydata.consonant[7], img_input3);
+
+ */
+
+
+
         if (img_output == null)
-            img_output = new Mat();
+            img_output = new Mat(500, 550, CvType.CV_8U, new Scalar(4));
 
 
         if(img_input1 != null && img_input2 != null && img_input3 != null){
@@ -162,6 +183,7 @@ public class activity_sub_03 extends AppCompatActivity {
             Utils.matToBitmap(img_output, Mydata.maked_letter[1]);
         }
 
+        //making_test(Mydata.myletter_element_b[0].getNativeObjAddr());
 
 
 

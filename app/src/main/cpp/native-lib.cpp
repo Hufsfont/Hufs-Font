@@ -436,59 +436,50 @@ Java_com_example_font_1opencv_activity_1sub_103_make_1words_103(JNIEnv *env, job
     Mat &first = *(Mat *) input_image1;
     Mat &medi = *(Mat *) input_image2;
     Mat &final = *(Mat *) input_image3;
-    Mat dst; //가로로 이미지 붙인 결과
-    Mat &dst_1 = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    Mat &dst = *(Mat *) output_image;
+    //*(Mat *) output_image = dst; //세로로 이미지 붙인 결과
 
-
-
-    resize(first, first, Size(300, 300), INTER_LINEAR);
-    resize(medi, medi, Size(200, 300), INTER_LINEAR);
-    resize(final, final, Size(500, 300), INTER_LINEAR);
-
-    hconcat(first, medi, dst); //가로로 이미지 붙이기
-
-    vconcat(dst, final, dst_1); //세로로 이미지 붙이기
-
-
-    //이진화해서 글자만 추출하기
-    //열거상수 THRESH_BINARY_INV
-    threshold(dst_1, dst_1, 170, 255, THRESH_BINARY_INV);
-
+    cvtColor(dst, dst, COLOR_GRAY2RGB);
     //색반전
-    dst_1 = ~dst_1;
+    dst = ~dst;
 
-    resize(dst_1, dst_1, Size(500, 500), INTER_AREA);
+    resize(first, first, Size(300, 300), INTER_AREA);
+    resize(medi, medi, Size(300, 300), INTER_AREA);
+    resize(final, final, Size(300, 200), INTER_AREA);
+
+    threshold(first, first, 170, 255, THRESH_BINARY_INV);
+    threshold(medi, medi, 170, 255, THRESH_BINARY_INV);
+    threshold(final, final, 170, 255, THRESH_BINARY_INV);
+
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(first, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0));
+
+    //중성
+    findContours(medi, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(200, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(200, 0));
+
+    //종성
+    findContours(final, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(100,300));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(100, 300));
 
 
-}
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_example_font_1opencv_activity_1sub_103_make_1ram(JNIEnv *env, jobject thiz,
-                                                          jlong input_image4, jlong input_image5,
-                                                          jlong input_image6, jlong output_image1) {
-    Mat &first = *(Mat *) input_image4;
-    Mat &medi = *(Mat *) input_image5;
-    Mat &final = *(Mat *) input_image6;
-    Mat dst; //가로로 이미지 붙인 결과
-    Mat &dst_1 = *(Mat *) output_image1; //세로로 이미지 붙인 결과
 
-
-
-    resize(first, first, Size(300, 300), INTER_LINEAR);
-    resize(medi, medi, Size(200, 300), INTER_LINEAR);
-    resize(final, final, Size(500, 300), INTER_LINEAR);
-
-    hconcat(first, medi, dst); //가로로 이미지 붙이기
-
-    vconcat(dst, final, dst_1); //세로로 이미지 붙이기
-
-
-    //이진화해서 글자만 추출하기
-    //열거상수 THRESH_BINARY_INV
-    threshold(dst_1, dst_1, 170, 255, THRESH_BINARY_INV);
-
-    //색반전
-    dst_1 = ~dst_1;
-
-    resize(dst_1, dst_1, Size(500, 500), INTER_AREA);
 }
