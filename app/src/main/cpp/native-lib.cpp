@@ -220,18 +220,20 @@ Java_com_example_font_1opencv_activity_1sub_103_make_1words(JNIEnv *env, jobject
 
 }
 
+/*
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_font_1opencv_activity_1sub_101_cv_1test(JNIEnv *env, jobject thiz,
-                                                         jlong input_image, jlong output_image) {
+                                                         jlong input_image,
+                                                         jlongArray output_image) {
     Mat &input_origin_image = *(Mat *) input_image;
     Mat result_binary_image;
     Mat input_gray_image;
     Mat kernel(3, 3, CV_8U, cv::Scalar(1));
+    //jsize len = env->GetArrayLength(output_image);
+    //Mat roi[len];
 
-    Mat roi[10];
-
-    roi[0] =  *(Mat *)output_image;
+    Mat *roi = reinterpret_cast<Mat *>(env->GetLongArrayElements(output_image, NULL));
 
     //이미지 사이즈 조절
     resize(input_origin_image, input_origin_image, Size(10000, 500), INTER_AREA);
@@ -289,7 +291,10 @@ Java_com_example_font_1opencv_activity_1sub_101_cv_1test(JNIEnv *env, jobject th
 
     //저장
     for (int i = 0; i < 10; i++) {
-        roi[i] = input_origin_image(roiRect[i]); //CROP
+        *(&roi[i]) = input_origin_image(roiRect[i]); //CROP
     }
 
+    env->ReleaseLongArrayElements(output_image, reinterpret_cast<jlong *>(roi), 0);
+
 }
+*/

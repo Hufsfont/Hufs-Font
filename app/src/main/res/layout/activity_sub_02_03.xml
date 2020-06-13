@@ -25,7 +25,7 @@
         android:layout_marginTop="116dp"
         android:background="#FFEB3B"
         android:gravity="center"
-        android:text="글자의 초성 중성 종성을 나누어 주세요"
+        android:text="글자의 초성 중성을 나누어 주세요"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"

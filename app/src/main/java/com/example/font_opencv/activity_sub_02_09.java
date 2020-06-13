@@ -8,7 +8,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,6 +39,7 @@ public class activity_sub_02_09 extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                /*
                 for(int i = 0; i < 10; i++){
                     for(int j = 0; j < 3; j++){
                         if(Mydata.myletter_element_b[i][j] == null){
@@ -49,6 +49,7 @@ public class activity_sub_02_09 extends AppCompatActivity {
                         }
                     }
                 }
+                 */
                 Intent intent = new Intent(getApplicationContext(), activity_sub_03.class);
                 startActivityForResult(intent, 1);
             }

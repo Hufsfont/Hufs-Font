@@ -66,13 +66,18 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
     private Mat img_output9;
     private Mat img_output10;
 
-    private Mat[] output_img = new Mat[10];
+    //private List<Mat> output_img_list = new ArrayList<>();
+
+    //private Mat[] output_img = new Mat[10];
 
 
     public native void opencv_01(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
                                  long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
 
-    public native void cv_test(long inputImage, long outputImage);
+
+
+
+    //public native void cv_test(long inputImage, long[] outputImage);
 
 
 
@@ -273,10 +278,22 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
             Utils.matToBitmap(img_output10, Mydata.example[9]);
 
 
-
 /*
             // 배열로 output image 값을 넘겨 받을 수 있는지 테스트
-            cv_test(img_input.getNativeObjAddr(), output_img[0].getNativeObjAddr());
+
+            for (int i = 0; i < 10; i++){
+                output_img[i] = new Mat();
+                output_img_list.add(output_img[i]);
+             }
+            int elems = output_img_list.size();
+            long[] temp_adr = new long[elems];
+
+            for (int i = 0; i < 10; i++){
+                temp_adr[i] = output_img_list.get(i).getNativeObjAddr();
+            }
+
+
+            cv_test(img_input.getNativeObjAddr(), temp_adr);
 
              for (int i = 0; i < 10; i++){
                  if(output_img[i] != null) {
@@ -289,6 +306,7 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
             }
 
  */
+
 
         } catch (Exception e) {
             uiHelper.toast(this, "Please select different profile picture.");
