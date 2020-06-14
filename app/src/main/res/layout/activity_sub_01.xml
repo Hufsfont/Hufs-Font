@@ -36,7 +36,7 @@
         android:layout_height="75dp"
         android:background="#FFEB3B"
         android:gravity="center"
-        android:text="예시와 같이 펜그램 사진을 찍어 주세요."
+        android:text="예시와 같이 팬그램 사진을 찍어 주세요."
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"

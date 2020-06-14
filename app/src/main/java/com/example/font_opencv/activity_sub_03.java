@@ -253,7 +253,7 @@ public class activity_sub_03 extends AppCompatActivity {
             imageView11.setImageBitmap(Mydata.maked_letter[8]);
         }
         else{
-            uiHelper.toast(this, "error.");
+            uiHelper.toast(this, "There's no image.");
         }
 
     }

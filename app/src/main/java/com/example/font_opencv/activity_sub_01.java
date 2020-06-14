@@ -66,18 +66,12 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
     private Mat img_output9;
     private Mat img_output10;
 
-    //private List<Mat> output_img_list = new ArrayList<>();
-
-    //private Mat[] output_img = new Mat[10];
-
-
     public native void opencv_01(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
                                  long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
 
-
-
-
-    //public native void cv_test(long inputImage, long[] outputImage);
+    //private List<Mat> output_img_list = new ArrayList<>();
+    //private Mat[] output_img = new Mat[10];
+    //public native void cv_test(long inputImage, long outputImage);
 
 
 
@@ -292,8 +286,7 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
                 temp_adr[i] = output_img_list.get(i).getNativeObjAddr();
             }
 
-
-            cv_test(img_input.getNativeObjAddr(), temp_adr);
+            cv_test(img_input.getNativeObjAddr(), temp_adr[0]);
 
              for (int i = 0; i < 10; i++){
                  if(output_img[i] != null) {
@@ -304,9 +297,7 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
                      uiHelper.toast(this, "output_img 에 이미지가 없습니다.");
                  }
             }
-
  */
-
 
         } catch (Exception e) {
             uiHelper.toast(this, "Please select different profile picture.");

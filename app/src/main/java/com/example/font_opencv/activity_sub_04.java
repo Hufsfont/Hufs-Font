@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class activity_sub_04 extends AppCompatActivity {
+
+    ImageView imageView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +35,11 @@ public class activity_sub_04 extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        imageView1 = (ImageView) findViewById(R.id.imageView1);
+
+        if(Mydata.maked_letter[0] != null) {
+            imageView1.setImageBitmap(Mydata.maked_letter[0]);
+        }
     }
 }

@@ -18,6 +18,7 @@ public class Mydata extends Application {
     static Bitmap[] vowel = new Bitmap[9];
     static Bitmap[][] myletter_element_b = new Bitmap[10][3];
     static Bitmap[] maked_letter = new Bitmap[9];
+    static Bitmap show_image; // 액티비티5에서 보여줄 이미지
 
     static void match(){
 
