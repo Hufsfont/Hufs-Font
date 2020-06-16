@@ -48,6 +48,35 @@ public class Mydata extends Application {
         vowel[9] = myletter_element_b[2][1].copy(myletter_element_b[2][1].getConfig(), true); //ㅣ :
         vowel[8] = myletter_element_b[5][1].copy(myletter_element_b[5][1].getConfig(), true); //ㅡ :
 
+ /*
+        consonant[0] = myletter_element_b[0][0].copy(Bitmap.Config.ARGB_8888,true); //ㄱ :
+        consonant[1] = myletter_element_b[5][2].copy(Bitmap.Config.ARGB_8888,true); //ㄴ :
+        consonant[2] = myletter_element_b[4][0].copy(Bitmap.Config.ARGB_8888,true); //ㄷ :
+        consonant[3] = myletter_element_b[9][0].copy(Bitmap.Config.ARGB_8888,true); //ㄹ :
+        consonant[4] = myletter_element_b[6][0].copy(Bitmap.Config.ARGB_8888,true); //ㅁ :
+        consonant[5] = myletter_element_b[3][0].copy(Bitmap.Config.ARGB_8888,true); //ㅂ :
+        consonant[6] = myletter_element_b[8][0].copy(Bitmap.Config.ARGB_8888,true); //ㅅ :
+        consonant[7] = myletter_element_b[7][2].copy(Bitmap.Config.ARGB_8888,true); //ㅇ :
+        consonant[8] = myletter_element_b[2][0].copy(Bitmap.Config.ARGB_8888,true); //ㅈ :
+        consonant[9] = myletter_element_b[6][2].copy(Bitmap.Config.ARGB_8888,true); //ㅊ :
+        consonant[10] = myletter_element_b[5][0].copy(Bitmap.Config.ARGB_8888,true); //ㅋ :
+        consonant[11] = myletter_element_b[0][2].copy(Bitmap.Config.ARGB_8888,true); //ㅌ :
+        consonant[12] = myletter_element_b[1][0].copy(Bitmap.Config.ARGB_8888,true); //ㅍ :
+        consonant[13] = myletter_element_b[7][0].copy(Bitmap.Config.ARGB_8888,true); //ㅎ :
+
+        vowel[0] = myletter_element_b[4][1].copy(Bitmap.Config.ARGB_8888,true); //ㅏ :
+        vowel[1] = myletter_element_b[7][1].copy(Bitmap.Config.ARGB_8888,true); //ㅑ :
+        vowel[2] = myletter_element_b[0][1].copy(Bitmap.Config.ARGB_8888,true); //ㅓ :
+        vowel[3] = myletter_element_b[6][1].copy(Bitmap.Config.ARGB_8888,true); //ㅕ :
+        vowel[4] = myletter_element_b[3][1].copy(Bitmap.Config.ARGB_8888,true); //ㅗ :
+        vowel[5] = myletter_element_b[1][1].copy(Bitmap.Config.ARGB_8888,true); //ㅛ :
+        vowel[6] = myletter_element_b[8][1].copy(Bitmap.Config.ARGB_8888,true); //ㅜ :
+        vowel[7] = myletter_element_b[9][1].copy(Bitmap.Config.ARGB_8888,true); //ㅠ :
+        vowel[9] = myletter_element_b[2][1].copy(Bitmap.Config.ARGB_8888,true); //ㅣ :
+        vowel[8] = myletter_element_b[5][1].copy(Bitmap.Config.ARGB_8888,true); //ㅡ :
+
+  */
+
     }
 
 }

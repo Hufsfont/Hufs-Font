@@ -1,6 +1,5 @@
 package com.example.font_opencv;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.font_opencv.utils.UiHelper;
 
-import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 
 
@@ -62,7 +60,7 @@ public class activity_sub_05 extends AppCompatActivity {
                 Toast.makeText(activity_sub_05.this, "폰트가 저장되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
-
+/*
         img_input1 = new Mat();
         img_input2 = new Mat();
         img_input3 = new Mat();
@@ -118,6 +116,8 @@ public class activity_sub_05 extends AppCompatActivity {
         else{
             uiHelper.toast(this, "There's no image.");
         }
+
+ */
     }
 }
 

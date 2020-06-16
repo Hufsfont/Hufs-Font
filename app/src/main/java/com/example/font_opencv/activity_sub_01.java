@@ -69,9 +69,10 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
     public native void opencv_01(long inputImage, long outputImage1, long outputImage2, long outputImage3, long outputImage4, long outputImage5,
                                  long outputImage6,  long outputImage7, long outputImage8, long outputImage9, long outputImage10);
 
-    //private List<Mat> output_img_list = new ArrayList<>();
-    //private Mat[] output_img = new Mat[10];
-    //public native void cv_test(long inputImage, long outputImage);
+
+    //List<Mat> output_img_list = new ArrayList<Mat>();
+    //Mat[] output_img = new Mat[10];
+    //public native void cv_test(long inputImage, long[] outputImage);
 
 
 
@@ -271,35 +272,39 @@ public class activity_sub_01 extends AppCompatActivity implements IImagePickerLi
             Mydata.example[9] = Bitmap.createBitmap(img_output10.cols(), img_output10.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(img_output10, Mydata.example[9]);
 
-
-/*
+ /*
             // 배열로 output image 값을 넘겨 받을 수 있는지 테스트
 
             for (int i = 0; i < 10; i++){
-                output_img[i] = new Mat();
-                output_img_list.add(output_img[i]);
+                Mat output_img = new Mat();
+                output_img_list.add(output_img);
              }
             int elems = output_img_list.size();
+            Log.v("Matobjdata", "number of Matobject read = " + elems);
             long[] temp_adr = new long[elems];
 
-            for (int i = 0; i < 10; i++){
-                temp_adr[i] = output_img_list.get(i).getNativeObjAddr();
+            for (int i = 0; i < elems; i++){
+                Mat tempaddr = output_img_list.get(i);
+                temp_adr[i] = tempaddr.getNativeObjAddr();
             }
 
-            cv_test(img_input.getNativeObjAddr(), temp_adr[0]);
+            cv_test(img_input.getNativeObjAddr(), temp_adr);
 
              for (int i = 0; i < 10; i++){
-                 if(output_img[i] != null) {
-                    Mydata.example[i] = Bitmap.createBitmap(output_img[i].cols(), output_img[i].rows(), Bitmap.Config.ARGB_8888);
-                    Utils.matToBitmap(output_img[i], Mydata.example[i]);
+                 if(output_img_list.get(i) != null) {
+                    Mydata.example[i] = Bitmap.createBitmap(output_img_list.get(i).cols(), output_img_list.get(i).rows(), Bitmap.Config.ARGB_8888);
+                    Utils.matToBitmap(output_img_list.get(i), Mydata.example[i]);
+                     uiHelper.toast(this, "output_img 에 이미지가 있습니다.");
                 }
                  else{
                      uiHelper.toast(this, "output_img 에 이미지가 없습니다.");
                  }
-            }
- */
+             }
+            uiHelper.toast(this, "배열 성공.");
+  */
 
         } catch (Exception e) {
+            e.printStackTrace();
             uiHelper.toast(this, "Please select different profile picture.");
         }
     }

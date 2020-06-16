@@ -10,6 +10,7 @@
 using namespace cv;
 using namespace std;
 
+// 액티비티 01 사각형 글자 크롭 함수
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_font_1opencv_activity_1sub_101_opencv_101(JNIEnv *env, jobject thiz,
@@ -141,6 +142,7 @@ Java_com_example_font_1opencv_activity_1sub_101_opencv_101(JNIEnv *env, jobject 
     }
 }
 
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_font_1opencv_activity_1sub_103_make_1words(JNIEnv *env, jobject thiz,
@@ -225,11 +227,12 @@ Java_com_example_font_1opencv_activity_1sub_103_make_1words(JNIEnv *env, jobject
 }
 
 /*
+// 액티비티 01 배열 테스트 함수
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_font_1opencv_activity_1sub_101_cv_1test(JNIEnv *env, jobject thiz,
                                                          jlong input_image,
-                                                         jlong output_image){
+                                                         jlongArray output_image){
     Mat &input_origin_image = *(Mat *) input_image;
     Mat result_binary_image;
     Mat input_gray_image;
@@ -246,12 +249,14 @@ Java_com_example_font_1opencv_activity_1sub_101_cv_1test(JNIEnv *env, jobject th
     //Mat *add_roi = roi;
     //add_roi = reinterpret_cast<Mat *>(add_java);
 
-    Mat roi[10];
-    roi = *(Mat *)output_image;
+    vector<Mat> roi;
+    jsize len = env->GetArrayLength(output_image);
+    jlong *outimg = env->GetLongArrayElements(output_image, 0);
 
-
-
-
+    for (int k = 0; k < len; k++){
+        Mat & img4roi = *(Mat*)outimg[k];
+        roi.push_back(img4roi);
+    }
 
     //이미지 사이즈 조절
     resize(input_origin_image, input_origin_image, Size(10000, 500), INTER_AREA);
@@ -309,11 +314,15 @@ Java_com_example_font_1opencv_activity_1sub_101_cv_1test(JNIEnv *env, jobject th
 
     //저장
     for (int i = 0; i < 10; i++) {
-        *(&roi[i]) = input_origin_image(roiRect[i]); //CROP
+        roi[i] = input_origin_image(roiRect[i]); //CROP
     }
 
+    env->ReleaseLongArrayElements(output_image, outimg, 0);
 }
-*/extern "C"
+*/
+
+// 액티비티 05
+extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_font_1opencv_activity_1sub_105_show_1words(JNIEnv *env, jobject thiz,
                                                             jlong input_image1, jlong input_image2,
@@ -332,11 +341,11 @@ Java_com_example_font_1opencv_activity_1sub_105_show_1words(JNIEnv *env, jobject
     Mat &eight = *(Mat *) input_image8;
     Mat &nine = *(Mat *) input_image9;
 
-    Mat row1; //가로로 이미지 붙인 결과
-    Mat row2;
-    Mat row3;
-    Mat col1;
-    Mat &final_col = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    Mat row1; //가로로 1,2,3 이미지 붙인 결과
+    Mat row2; //가로로 4,5,6 이미지 붙인 결과
+    Mat row3; //가로로 7,8,9 이미지 붙인 결과
+    Mat col1; // 세로로 row1, row2 이미지 붙인 결과
+    Mat &final_col = *(Mat *) output_image; //세로로 이미지 붙인 최종 결과
 
     resize(one, one, Size(300, 300), INTER_AREA);
     resize(two, two, Size(300, 300), INTER_AREA);
@@ -355,8 +364,8 @@ Java_com_example_font_1opencv_activity_1sub_105_show_1words(JNIEnv *env, jobject
     hconcat(row2, six, row2); // 둘째줄
     hconcat(seven, eight, row3);
     hconcat(row3, nine, row3); // 셋째줄
-    vconcat(row1, row2, col1); //세로로 이미지 붙이기
-    vconcat(col1, row3, final_col);
+    vconcat(row1, row2, col1); // 첫째줄과 둘째줄을 세로로 이미지 붙이기
+    vconcat(col1, row3, final_col); // 셋재줄까지 세로로 이미지 붙이기
 
     //이진화해서 글자만 추출하기
     //열거상수 THRESH_BINARY_INV
@@ -367,4 +376,459 @@ Java_com_example_font_1opencv_activity_1sub_105_show_1words(JNIEnv *env, jobject
     final_col = ~final_col;
 
     resize(final_col, final_col, Size(500, 500), INTER_AREA);
+}
+
+// 액티비티 03 배열 테스트 함수
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_arr_1test(JNIEnv *env, jobject thiz,
+                                                          jlongArray cons_image,
+                                                          jlongArray vow_image,
+                                                          jlongArray output_image) {
+
+    vector<Mat> consonents;
+    vector<Mat> vowels;
+    vector<Mat> dst_1;
+
+    jsize cons_len = env->GetArrayLength(cons_image);
+    jlong *consimg = env->GetLongArrayElements(cons_image, 0);
+
+    for (int k = 0; k < cons_len; k++){
+        Mat & cons_img = *(Mat*)consimg[k];
+        consonents.push_back(cons_img);
+    }
+
+    jsize vow_len = env->GetArrayLength(vow_image);
+    jlong *vowimg = env->GetLongArrayElements(vow_image, 0);
+
+    for (int k = 0; k < vow_len; k++){
+        Mat & vow_img = *(Mat*)vowimg[k];
+        vowels.push_back(vow_img);
+    }
+
+    jsize out_len = env->GetArrayLength(output_image);
+    jlong *outimg = env->GetLongArrayElements(output_image, 0);
+
+    for (int k = 0; k < out_len; k++){
+        Mat & resultimg = *(Mat*)outimg[k];
+        dst_1.push_back(resultimg);
+    }
+
+    for (int i = 0; i < 3 ; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            Mat first = consonents[i];
+            Mat medi = vowels[i];
+            Mat final = consonents[2];
+            Mat dst;
+
+            resize(first, first, Size(300, 300), INTER_AREA);
+            resize(medi, medi, Size(200, 300), INTER_AREA);
+            resize(final, final, Size(500, 300), INTER_AREA);
+
+            hconcat(first, medi, dst); //가로로 이미지 붙이기
+            vconcat(dst, final, dst_1[i]); //세로로 이미지 붙이기
+
+            //이진화해서 글자만 추출하기
+            //열거상수 THRESH_BINARY_INV
+
+            threshold(dst_1[i], dst_1[i], 170, 255, THRESH_BINARY_INV);
+
+            //색반전
+            dst_1[i] = ~dst_1[i];
+
+            resize(dst_1[i], dst_1[i], Size(500, 500), INTER_AREA);
+
+        }
+
+    }
+
+    env->ReleaseLongArrayElements(cons_image, consimg, 0);
+    env->ReleaseLongArrayElements(vow_image, vowimg, 0);
+    env->ReleaseLongArrayElements(output_image, outimg, 0);
+
+}
+
+// type1
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_make_1type1_1words(JNIEnv *env, jobject thiz,
+                                                                   jlong input_image1,
+                                                                   jlong input_image2,
+                                                                   jlong output_image) {
+    Mat &ini = *(Mat *) input_image1;
+    Mat &medi = *(Mat *) input_image2;
+    Mat &dst = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    //dst = cv::Mat::zeros(Size(500, 500), CV_8U);
+    cvtColor(dst, dst, COLOR_GRAY2RGB);
+    dst = ~dst;
+
+    resize(ini, ini, Size(250, 500), INTER_AREA);
+    resize(medi, medi, Size(250, 500), INTER_AREA);
+
+    threshold(ini, ini, 170, 255, THRESH_BINARY_INV);
+    threshold(medi, medi, 170, 255, THRESH_BINARY_INV);
+
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(ini, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0));
+
+    //종성
+    findContours(medi, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(250, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(250, 0));
+}
+
+// type2
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_make_1type2_1words(JNIEnv *env, jobject thiz,
+                                                                   jlong input_image1,
+                                                                   jlong input_image2,
+                                                                   jlong output_image) {
+    Mat &ini = *(Mat *) input_image1;
+    Mat &medi = *(Mat *) input_image2;
+    Mat &dst = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    //dst = cv::Mat::zeros(Size(500, 500), CV_8U);
+    cvtColor(dst, dst, COLOR_GRAY2RGB);
+    dst = ~dst;
+
+    resize(ini, ini, Size(500, 250), INTER_AREA);
+    resize(medi, medi, Size(500, 250), INTER_AREA);
+
+    threshold(ini, ini, 170, 255, THRESH_BINARY_INV);
+    threshold(medi, medi, 170, 255, THRESH_BINARY_INV);
+
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(ini, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0));
+
+    //종성
+    findContours(medi, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 250));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(0, 250));
+}
+
+// type3
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_make_1type3_1words(JNIEnv *env, jobject thiz,
+                                                                   jlong input_image1,
+                                                                   jlong input_image2,
+                                                                   jlong input_image3,
+                                                                   jlong output_image) {
+    Mat &ini = *(Mat *) input_image1;
+    Mat &medi = *(Mat *) input_image2;
+    Mat &fin = *(Mat *) input_image3;
+    Mat &dst = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    dst = cv::Mat::zeros(Size(500, 500), CV_8U);
+
+    cvtColor(ini, ini, COLOR_RGBA2GRAY);
+    cvtColor(medi, medi, COLOR_RGBA2GRAY);
+    cvtColor(fin, fin, COLOR_RGBA2GRAY);
+
+    cvtColor(dst, dst, COLOR_GRAY2RGB);
+    dst = ~dst;
+    ini = ~ini;
+    medi = ~medi;
+    fin = ~fin;
+
+    resize(ini, ini, Size(250, 250), INTER_AREA);
+    resize(medi, medi, Size(250, 250), INTER_AREA);
+    resize(fin, fin, Size(500, 200), INTER_AREA);
+
+    threshold(ini, ini, 170, 255, THRESH_BINARY_INV);
+    threshold(medi, medi, 170, 255, THRESH_BINARY_INV);
+    threshold(fin, fin, 170, 255, THRESH_BINARY_INV);
+
+    Scalar color = Scalar(0, 0, 0);
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(ini, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        cv::fillPoly(dst, contours, color, cv::LINE_8, 0, Point(0, 0));
+
+    }
+
+
+    //중성
+    findContours(medi, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        cv::fillPoly(dst, contours, color, cv::LINE_8, 0, Point(250,0));
+
+    }
+
+
+    //종성
+    findContours(fin, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        cv::fillPoly(dst, contours, color, cv::LINE_8, 0, Point(0, 200));
+    }
+
+}
+
+// type4
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_make_1type4_1words(JNIEnv *env, jobject thiz,
+                                                                   jlong input_image1,
+                                                                   jlong input_image2,
+                                                                   jlong input_image3,
+                                                                   jlong output_image) {
+
+    Mat &ini = *(Mat *) input_image1;
+    Mat &medi = *(Mat *) input_image2;
+    Mat &fin = *(Mat *) input_image3;
+    Mat &dst = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    //dst = cv::Mat::zeros(Size(500, 500), CV_8U);
+    cvtColor(dst, dst, COLOR_GRAY2RGB);
+    dst = ~dst;
+
+    resize(ini, ini, Size(250, 250), INTER_AREA);
+    resize(medi, medi, Size(250, 250), INTER_AREA);
+    resize(fin, fin, Size(500, 200), INTER_AREA);
+
+    threshold(ini, ini, 170, 255, THRESH_BINARY_INV);
+    threshold(medi, medi, 170, 255, THRESH_BINARY_INV);
+    threshold(fin, fin, 170, 255, THRESH_BINARY_INV);
+
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(ini, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0));
+
+    //중성
+    findContours(medi, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(250, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(250, 0));
+
+    //종성
+    findContours(fin, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 250));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(0, 250));
+
+/*
+    // 수빈님 코드
+    Mat &first = *(Mat*) input_image1;
+    Mat &medi = *(Mat*) input_image2;
+    Mat &final = *(Mat*) input_image3;
+    Mat &dst = *(Mat*) output_image;
+    //dst = cv::Mat::zeros(Size(500, 550), CV_8U);
+
+    cvtColor(first, first, COLOR_RGBA2GRAY);
+    cvtColor(medi, medi, COLOR_RGBA2GRAY);
+    cvtColor(final, final, COLOR_RGBA2GRAY);
+
+
+    resize(first, first, Size(300, 300), INTER_AREA);
+    resize(medi, medi, Size(300, 300), INTER_AREA);
+    resize(final, final, Size(300, 200), INTER_AREA);
+
+
+    threshold(first, first, 170, 255, THRESH_BINARY_INV);
+    threshold(medi, medi, 170, 255, THRESH_BINARY_INV);
+    threshold(final, final, 170, 255, THRESH_BINARY_INV);
+
+
+
+    //imshow("1 first", first);
+    //imshow("1 medi", medi);
+    //imshow("1 final", final);
+
+
+    Rect rect;
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(first, contours, hierarchy, RETR_CCOMP, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        rect = boundingRect(contours[i]);
+        Scalar color = Scalar(255, 255, 255);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 0));
+    }
+    //cv::fillPoly(dst, contours, cv::Scalar(255,255,255));
+
+    //중성
+    findContours(medi, contours, hierarchy, RETR_CCOMP, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(255, 255, 255);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(300, 0));
+    }
+    //cv::fillPoly(dst, contours, cv::Scalar(255, 255, 255), cv::LINE_8, 0, Point(200, 0));
+
+    //종성
+    findContours(final, contours, hierarchy, RETR_CCOMP, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(255, 255, 255);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(100,300));
+    }
+    //cv::fillPoly(dst, contours, cv::Scalar(255, 255, 255), cv::LINE_8, 0, Point(100, 300));
+
+    dst = ~dst;
+    */
+
+}
+
+// type5
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_make_1type5_1words(JNIEnv *env, jobject thiz,
+                                                                   jlong input_image1,
+                                                                   jlong input_image2,
+                                                                   jlong input_image3,
+                                                                   jlong output_image) {
+    Mat &ini = *(Mat *) input_image1;
+    Mat &medi = *(Mat *) input_image2;
+    Mat &fin = *(Mat *) input_image3;
+    Mat &dst = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    //dst = cv::Mat::zeros(Size(500, 500), CV_8U);
+    cvtColor(dst, dst, COLOR_GRAY2RGB);
+    dst = ~dst;
+
+    resize(ini, ini, Size(400, 200), INTER_AREA);
+    resize(medi, medi, Size(500, 100), INTER_AREA);
+    resize(fin, fin, Size(400, 200), INTER_AREA);
+
+    threshold(ini, ini, 170, 255, THRESH_BINARY_INV);
+    threshold(medi, medi, 170, 255, THRESH_BINARY_INV);
+    threshold(fin, fin, 170, 255, THRESH_BINARY_INV);
+
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(ini, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0));
+
+    //중성
+    findContours(medi, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 200));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(0, 200));
+
+    //종성
+    findContours(fin, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(50, 300));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(50, 300));
+}
+
+// type6
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_font_1opencv_activity_1sub_103_make_1type6_1words(JNIEnv *env, jobject thiz,
+                                                                   jlong input_image1,
+                                                                   jlong input_image2,
+                                                                   jlong input_image3,
+                                                                   jlong input_image4,
+                                                                   jlong output_image) {
+    Mat &ini = *(Mat *) input_image1;
+    Mat &medi_1 = *(Mat *) input_image2;
+    Mat &medi_2 = *(Mat *) input_image3;
+    Mat &fin = *(Mat *) input_image4;
+    Mat &dst = *(Mat *) output_image; //세로로 이미지 붙인 결과
+    //dst = cv::Mat::zeros(Size(500, 500), CV_8U);
+
+    cvtColor(dst, dst, COLOR_GRAY2RGB);
+    dst = ~dst;
+
+    resize(ini, ini, Size(250, 150), INTER_AREA);
+    resize(medi_1, medi_1, Size(250, 150), INTER_AREA);
+    resize(medi_2, medi_2, Size(250, 300), INTER_AREA);
+    resize(fin, fin, Size(500, 200), INTER_AREA);
+
+    threshold(ini, ini, 170, 255, THRESH_BINARY_INV);
+    threshold(medi_1, medi_1, 170, 255, THRESH_BINARY_INV);
+    threshold(medi_2, medi_2, 170, 255, THRESH_BINARY_INV);
+    threshold(fin, fin, 170, 255, THRESH_BINARY_INV);
+
+    std::vector<vector<Point>> contours;
+    std::vector<Vec4i> hierarchy;
+    //초성
+    findContours(ini, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0));
+
+    //중성 1
+    findContours(medi_1, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 150));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(0, 150));
+
+    //중성 2
+    findContours(medi_2, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(250, 0));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(250, 0));
+
+    //종성
+    findContours(fin, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0));
+    for (int i = 0; i< contours.size(); i++)
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours(dst, contours, i, color, 2, 8, hierarchy, 0, Point(0, 300));
+    }
+    cv::fillPoly(dst, contours, cv::Scalar(0, 0, 0), cv::LINE_8, 0, Point(0, 300));
 }
